@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang = "en">
+<head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <title>Death's Warrant</title>
+</head>
+<body>
+    <h1>Death's Warrant</h1>
+    
+    <label for = "patient-file">Patient CSV</label>
+    <input id = "patient-file" type = "file" accept = ".csv">
+
+    <label for = "start">Start age</label>
+    <input id = "start" type = "number" min = "0" step = "any" value = "0">
+
+    <label for = "end">End age </label>
+    <input id = "end" type = "number" min = "0" step = "any" value = "3">
+
+    <label for = "remove-cause">Remove cause (optional)</label>
+    <input id = "remove-cause" type = "text" value = "">
+
+    <button id = "analyse" type = "button" disabled>Analyse</button>
+    <progress id="startup-progress" value = "0" max = "4" aria-label = "Analysis tools loading progress"></progress>
+    <p id = "status" role = "status">Analysis isn't connected yet.</p>
+
+    <pre id = "results" aria-label = "Analysis results"></pre>
+
+    <script type = "module" src="./app.js"></script>
+</body>
+</html>

@@ -25,5 +25,5 @@ def remove_cause(times, causes, cause_to_remove, entry=None, weights=None):
     curve = pd.DataFrame(rows)
     return({
         "curve": curve, "removed_cause": cause_to_remove, "assumption_dependent": True,
-        "warning": "Assumption-dependent scenario: assumes independent laten cause-specific failure times and unchanged hazards for remaining causes. Not a causal prediction"
+        "warning": "Assumption-dependent scenario: assumes independent latent cause-specific failure times and unchanged hazards for remaining causes. Not a causal prediction"
     })
