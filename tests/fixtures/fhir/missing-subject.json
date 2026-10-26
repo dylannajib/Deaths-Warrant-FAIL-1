@@ -1,0 +1,2 @@
+{"resourceType": "Bundle", "type": "collection", "entry": [{"resource": {"resourceType": "Patient", "id": "fictional-patient"}},
+{"resource": {"resourceType": "Condition"}}]}
