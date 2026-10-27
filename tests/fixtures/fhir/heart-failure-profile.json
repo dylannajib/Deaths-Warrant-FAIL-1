@@ -1,0 +1,27 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    { "resource": { "resourceType": "Patient", "id": "fictional-patient", "birthDate": "1966-01-01" } },
+    { "resource": {
+      "resourceType": "Condition",
+      "subject": { "reference": "Patient/fictional-patient" },
+      "code": { "coding": [{ "system": "http://snomed.info/sct", "code": "84114007" }] },
+      "clinicalStatus": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/condition-clinical", "code": "active" }] },
+      "verificationStatus": { "coding": [{ "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status", "code": "confirmed" }] },
+      "recordedDate": "2025-12-01"
+    } },
+    { "resource": {
+      "resourceType": "Observation", "status": "final",
+      "subject": { "reference": "Patient/fictional-patient" },
+      "code": { "coding": [{ "system": "http://snomed.info/sct", "code": "399211009" }] },
+      "effectiveDateTime": "2026-01-01", "valueBoolean": true
+    } },
+    { "resource": {
+      "resourceType": "Observation", "status": "final",
+      "subject": { "reference": "Patient/fictional-patient" },
+      "code": { "coding": [{ "system": "http://snomed.info/sct", "code": "275526006" }] },
+      "effectiveDateTime": "2026-01-01", "valueBoolean": false
+    } }
+  ]
+}

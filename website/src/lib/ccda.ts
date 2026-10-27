@@ -3,6 +3,9 @@ type CcdPatientIdentifier = {
 };
 
 export function parseCdaXml(xmlText: string): Document {
+    if (/<!DOCTYPE|<!ENTITY/i.test(xmlText)) {
+        throw new Error("XML document types and entity declarations are not supported.")
+    }
     const parser = new DOMParser();
     const xmlDocument = parser.parseFromString(xmlText, "application/xml");
     if (xmlDocument.getElementsByTagNameNS("*", "parsererror").length > 0) {
@@ -33,7 +36,7 @@ export function validateCcdTemplates(xmlDocument: Document): void{
     }
 }
 
-function getCdaChildren(parent: Element, name: string): Element[] {
+export function getCdaChildren(parent: Element, name: string): Element[] {
     return Array.from(parent.children).filter(element =>
         element.namespaceURI === "urn:hl7-org:v3" &&
         element.localName === name

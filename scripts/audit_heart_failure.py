@@ -1,4 +1,9 @@
 import pandas as pd; from deaths_warrant.nhanes import load_demo, load_lmf
+from math import exp, gamma
+from lifelines import WeibullFitter, WeibullAFTFitter
+from lifelines.utils import concordance_index
+from deaths_warrant.km import kaplan_meier
+from deaths_warrant.years_lost import summarise_years
 
 def audit_cycle(cycle, medical_path, demo_path, mortality_path):
     print("Cycle:", cycle)
@@ -72,3 +77,85 @@ print("Combined participants:", len(combined))
 print("Combined mortality:", combined["mortstat"].value_counts(dropna=False))
 print("Duplicate participant IDs:", combined["seqn"].duplicated().sum())
 print("Participants by cycle:", combined["cycle"].value_counts())
+
+follow_up_years = (combined["permth_int"]/12).tolist()
+deaths = combined["mortstat"].astype(int).tolist()
+curve = kaplan_meier(follow_up_years, deaths)
+summary = summarise_years(curve, 0, 5)
+print(summary)
+
+total_follow_up_years = (combined["permth_int"].sum()) / 12
+recorded_deaths = (combined["mortstat"] == 1).sum()
+exponential_mean_years = total_follow_up_years/recorded_deaths
+print(total_follow_up_years)
+print(recorded_deaths)
+print(exponential_mean_years)
+
+exponential_survival_5 = exp(-5 / exponential_mean_years)
+print("Exponential five-year-survival:", exponential_survival_5)
+
+weibull = WeibullFitter()
+weibull.fit(follow_up_years, event_observed=deaths)
+shape = weibull.rho_
+scale = weibull.lambda_
+print("Weibull Shape:", shape)
+print("Weibull Scale:", scale)
+weibull_mean_years = scale * gamma(1 + 1 / shape)
+weibull_survival_5 = exp(-((5/scale) ** shape))
+print("Weibull mean remaining years:", weibull_mean_years)
+print("Weibull five-year survival:", weibull_survival_5)
+
+training = heart_failure_2011
+checking = heart_failure_2013
+training_years = (training["permth_int"]/12).tolist()
+training_deaths = (training["mortstat"]).astype(int).tolist()
+training_exponential_mean = (training["permth_int"].sum() / 12) / (training["mortstat"] == 1).sum()
+training_weibull = WeibullFitter()
+training_weibull.fit(training_years, event_observed=training_deaths)
+checking_years = (checking["permth_int"] / 12).tolist()
+checking_deaths = checking["mortstat"].astype(int).tolist()
+checking_curve = kaplan_meier(checking_years, checking_deaths)
+
+for year in [1, 3, 5]:
+    observed = checking_curve[checking_curve["time"] <= year].iloc[-1]["survival"]
+    exponential_prediction = exp(-year / training_exponential_mean)
+    weibull_prediction = exp(-((year/training_weibull.lambda_) ** training_weibull.rho_))
+    print("Year:", year)
+    print("Observed:", observed)
+    print("Exponential:", exponential_prediction)
+    print("Weibull:", weibull_prediction)
+
+age_training = training[training["age_years"].between(40, 79)].copy()
+age_training["follow_up_years"] = age_training["permth_int"] / 12
+age_model = WeibullAFTFitter()
+age_model.fit(age_training, duration_col = "follow_up_years", event_col = "mortstat", formula = "age_years")
+examples = pd.DataFrame({"age_years": [40, 60, 75]})
+examples["estimated_years"] = age_model.predict_expectation(examples)
+print(examples)
+
+age_checking = checking[checking["age_years"].between(40, 79)].copy()
+early_censored = ((age_checking["mortstat"] == 0) & (age_checking["permth_int"] < 60)).sum()
+print("Observation ended before five years:", early_censored)
+if early_censored > 0:
+    raise ValueError("Five-year outcome checks require complete five-year outcomes; some observations ended early.")
+
+predicted_survival_5 = age_model.predict_survival_function(age_checking, times = [5]).iloc[0]
+print("Average predicted survival:", predicted_survival_5.mean())
+
+died_by_5 = ((age_checking["mortstat"] == 1) & (age_checking["permth_int"] <= 60))
+observed_survival_5 = 1 - died_by_5.mean()
+print("Observed survival:", observed_survival_5)
+
+actual_survival_5 = 1 - died_by_5.astype(int)
+age_brier = ((predicted_survival_5 - actual_survival_5) ** 2).mean()
+print("Age model five-year error:", age_brier)
+
+baseline_model = WeibullFitter()
+baseline_model.fit(age_training["follow_up_years"], event_observed=age_training["mortstat"])
+baseline_survival_5 = baseline_model.survival_function_at_times([5]).iloc[0]
+baseline_brier = ((baseline_survival_5 - actual_survival_5) ** 2).mean()
+print("Baseline five-year error:", baseline_brier)
+
+predicted_medians = age_model.predict_median(age_checking)
+age_concordance = concordance_index(age_checking["permth_int"] / 12, predicted_medians, age_checking["mortstat"])
+print("Age model survival ranking:", age_concordance)

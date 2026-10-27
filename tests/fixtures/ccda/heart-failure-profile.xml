@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
+  <templateId root="2.16.840.1.113883.10.20.22.1.2" extension="2015-08-01"/>
+  <recordTarget><patientRole>
+    <id root="2.75.12345" extension="fictional-patient"/>
+    <patient><birthTime value="19660101"/></patient>
+  </patientRole></recordTarget>
+  <component><structuredBody><component><section>
+    <templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01"/>
+    <entry><act classCode="ACT" moodCode="EVN">
+      <templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+      <entryRelationship typeCode="SUBJ"><observation classCode="OBS" moodCode="EVN">
+        <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+        <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+        <statusCode code="completed"/>
+        <effectiveTime><low value="20251201"/></effectiveTime>
+        <value xsi:type="CD" code="84114007" codeSystem="2.16.840.1.113883.6.96"/>
+      </observation></entryRelationship>
+      <entryRelationship typeCode="SUBJ"><observation classCode="OBS" moodCode="EVN">
+        <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+        <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+        <statusCode code="completed"/>
+        <effectiveTime><low value="20260101"/></effectiveTime>
+        <value xsi:type="CD" code="399211009" codeSystem="2.16.840.1.113883.6.96"/>
+      </observation></entryRelationship>
+      <entryRelationship typeCode="SUBJ"><observation classCode="OBS" moodCode="EVN" negationInd="true">
+        <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+        <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+        <statusCode code="completed"/>
+        <effectiveTime><low value="20260101"/></effectiveTime>
+        <value xsi:type="CD" code="275526006" codeSystem="2.16.840.1.113883.6.96"/>
+      </observation></entryRelationship>
+    </act></entry>
+  </section></component></structuredBody></component>
+</ClinicalDocument>

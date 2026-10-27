@@ -1,0 +1,40 @@
+{
+  "modelVersion": "nhanes-hf-weibull-0.1.0",
+  "training": {
+    "cycle": "2011-2012",
+    "questionnaireParticipants": 9364,
+    "heartFailureReports": 187,
+    "eligibleAge40To79": 129,
+    "excludedUnknownHistory": 1,
+    "modelParticipants": 128,
+    "deaths": 54
+  },
+  "checking": {
+    "cycle": "2013-2014",
+    "questionnaireParticipants": 9770,
+    "heartFailureReports": 182,
+    "eligibleAge40To79": 128,
+    "excludedUnknownHistory": 0,
+    "modelParticipants": 128,
+    "deaths": 38
+  },
+  "evaluation": {
+    "participants": 128,
+    "deathsByFiveYears": 29,
+    "meanPredictedFiveYearSurvival": 0.7653828573735337,
+    "observedFiveYearSurvival": 0.7734375,
+    "brier": 0.1828472347233113,
+    "baselineBrier": 0.17554603735307786,
+    "concordance": 0.48313466903373065,
+    "assessment": "Development comparison only; not independent clinical or lifetime validation."
+  },
+  "clinicallyValidated": false,
+  "improvesFiveYearBrier": false,
+  "releaseDecision": "Do not use for patient prognosis; experimental calculations only.",
+  "limitations": [
+    "Historical self-reported diagnoses; no current severity or treatment effects.",
+    "Unweighted; ordinary bootstrap does not account for survey design.",
+    "Lifetime extrapolation is unvalidated; checking cycle already inspected during development.",
+    "Clinical records and self-reported survey histories are different measurement sources."
+  ]
+}
