@@ -1,6 +1,6 @@
 import { getSinglePatient, isJsonObject, readBundleResources, validatePatientReferences } from "./fhir";
 import { readRecordDate, validateDate } from "./patient-profile";
-import { createCardiovascularProfile, readCardiovascularCode, type CardiovascularEvidence, type CardiovascularProfile } from "./cardiovascular-profile";
+import { createCardiovascularProfile, validateCardiovascularEvidence, readCardiovascularCode, type CardiovascularEvidence, type CardiovascularProfile } from "./cardiovascular-profile";
 
 // Reject unknown structure rather than accepting unimplemented context or modifier semantics.
 function objectKeys(value: unknown, allowed: string[], label: string): Record<string, unknown> {
@@ -11,7 +11,7 @@ function objectKeys(value: unknown, allowed: string[], label: string): Record<st
 }
 
 // Read only the documented, patient-scoped final questionnaire and measurement export subset.
-export function readFhirCardiovascularProfile(value: unknown, asOf: string): CardiovascularProfile {
+export function readFhirCardiovascularEvidence(value: unknown, asOf: string): CardiovascularEvidence[] {
   validateDate(asOf, "Assessment date");
   const bundle = objectKeys(value, ["resourceType", "type", "entry"], "Bundle");
   if (bundle.type !== "collection") throw new Error("Cardiovascular Bundle must be a collection.");
@@ -56,5 +56,11 @@ export function readFhirCardiovascularProfile(value: unknown, asOf: string): Car
       evidence.push({ code, date, value: resource.valueInteger });
     }
   }
-  return createCardiovascularProfile(evidence, asOf);
+  validateCardiovascularEvidence(evidence, asOf);
+  return evidence;
+}
+
+// Preserve the strict complete-profile API used by existing callers and tests.
+export function readFhirCardiovascularProfile(value: unknown, asOf: string): CardiovascularProfile {
+  return createCardiovascularProfile(readFhirCardiovascularEvidence(value, asOf), asOf);
 }

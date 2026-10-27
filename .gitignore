@@ -13,3 +13,5 @@ data/
 *.XPT
 
 explore.py
+# Generated browser copies of the frozen model and inference engine.
+/website/public/prognosis/

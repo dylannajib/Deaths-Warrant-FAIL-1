@@ -1,6 +1,8 @@
 # Cardiovascular record extraction contract (milestone 11.2)
 
-This is a conservative, application-specific interchange subset for the broad cardiovascular model in `cardiovascular_model_plan.md`. It does not interpret arbitrary clinical FHIR or CCD records. Existing HF readers, model and page integration are unchanged. All fixtures are synthetic.
+This is a conservative, application-specific interchange subset for the broad cardiovascular model in `cardiovascular_model_plan.md`. It does not interpret arbitrary clinical FHIR or CCD records. Existing HF readers remain available. All fixtures are synthetic.
+
+Milestone 11.4 adds `readFhirCardiovascularEvidence()` and `readCcdCardiovascularEvidence()` for incomplete supported snapshots. They validate all present evidence and document contexts, returning absent fields as missing. The page locks imported values, asks users to supply missing answers, and requires confirmation before `profileFromAnswers()` creates a complete profile. Unsupported units, invalid present values, identity conflicts and ambiguous contexts remain import errors; they do not become a blank form. The original complete-profile reader functions retain their strict contract below.
 
 ## Exports and result
 
@@ -73,4 +75,4 @@ CCD uses an element/attribute allowlist throughout the tree. Subject/participant
 
 `tests/fixtures/cardiovascular/patient-profile.json`, `fhir.json` and `ccd.xml` describe the same synthetic assessment. Frontend tests verify exact parity, each missing field, unknown/out-of-range values, smoking definition, dates, units (including rejection of creatinine `umol/L`), identity, unsupported contexts, XML parser protection and duplicate/conflicting evidence. Existing HF tests continue to run.
 
-Run from `website`: `npm test`, `npm run typecheck`, `npm run lint`. There is no page wiring, broad model execution, prediction or Python change in this milestone.
+Run from `website`: `npm test`, `npm run typecheck`, `npm run lint`, `npm run build`. The page now runs the existing Python prediction engine inside a Web Worker; calculations and the frozen model are unchanged. See `milestone_11.md` for browser verification and remaining 11.5 checks.

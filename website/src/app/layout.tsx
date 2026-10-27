@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 // Wrap every page in the document shell with the shared Geist font variables.
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>{children}</body>

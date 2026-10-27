@@ -1,6 +1,6 @@
 import { getCdaChildren, getCcdPatientRole, parseCdaXml, readCcdPatientIdentifiers, validateCcdTemplates } from "./ccda";
 import { readRecordDate, validateDate } from "./patient-profile";
-import { cardiovascularQuestionOid, createCardiovascularProfile, readCardiovascularCode, type CardiovascularEvidence, type CardiovascularProfile } from "./cardiovascular-profile";
+import { cardiovascularQuestionOid, createCardiovascularProfile, validateCardiovascularEvidence, readCardiovascularCode, type CardiovascularEvidence, type CardiovascularProfile } from "./cardiovascular-profile";
 
 const cda = "urn:hl7-org:v3", xsi = "http://www.w3.org/2001/XMLSchema-instance";
 const structure: Record<string, { children: string[]; attributes: string[] }> = {
@@ -54,7 +54,7 @@ function date(element: Element, asOf: string): string {
 }
 
 // Extract the strict questionnaire snapshot section from a single-patient CCD export.
-export function readCcdCardiovascularProfile(xmlText: string, asOf: string): CardiovascularProfile {
+export function readCcdCardiovascularEvidence(xmlText: string, asOf: string): CardiovascularEvidence[] {
   validateDate(asOf, "Assessment date");
   const document = parseCdaXml(xmlText);
   validateCcdTemplates(document);
@@ -92,5 +92,11 @@ export function readCcdCardiovascularProfile(xmlText: string, asOf: string): Car
     const unit = value.getAttribute("unit") ?? undefined;
     evidence.push({ code, value: Number(raw), unit, date: date(single(observation, "effectiveTime"), asOf) });
   }
-  return createCardiovascularProfile(evidence, asOf);
+  validateCardiovascularEvidence(evidence, asOf);
+  return evidence;
+}
+
+// Preserve the strict complete-profile API used by existing callers and tests.
+export function readCcdCardiovascularProfile(xmlText: string, asOf: string): CardiovascularProfile {
+  return createCardiovascularProfile(readCcdCardiovascularEvidence(xmlText, asOf), asOf);
 }

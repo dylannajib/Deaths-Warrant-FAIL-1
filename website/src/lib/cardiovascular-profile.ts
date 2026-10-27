@@ -28,8 +28,8 @@ export function readCardiovascularCode(system: string, code: string): Cardiovasc
   return code as CardiovascularCode;
 }
 
-// Build one complete exam snapshot; identical duplicates also require unsupported reconciliation.
-export function createCardiovascularProfile(evidence: CardiovascularEvidence[], asOf: string): CardiovascularProfile {
+// Validate every supplied answer while preserving absent evidence as unknown.
+export function validateCardiovascularEvidence(evidence: CardiovascularEvidence[], asOf: string): Partial<Record<CardiovascularCode, number>> {
   validateDate(asOf, "Assessment date");
   const values: Partial<Record<CardiovascularCode, number>> = {};
   for (const item of evidence) {
@@ -49,6 +49,12 @@ export function createCardiovascularProfile(evidence: CardiovascularEvidence[], 
     }
     values[item.code] = item.value;
   }
+  return values;
+}
+
+// Require a complete supported snapshot before constructing model inputs.
+export function createCardiovascularProfile(evidence: CardiovascularEvidence[], asOf: string): CardiovascularProfile {
+  const values = validateCardiovascularEvidence(evidence, asOf);
   for (const code of Object.keys(cardiovascularCodes)) {
     if (!Object.hasOwn(values, code)) throw new Error("Missing explicit cardiovascular evidence: " + code);
   }
