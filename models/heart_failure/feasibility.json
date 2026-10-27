@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "nhanes-hf-weibull-0.1.0",
+  "modelFingerprint": "70bdb66f22627ca190445533a8fa6ae2e66a2d6c12be516afa5b3f1188eecf45",
+  "assessmentComplete": true,
+  "decision": "research_only",
+  "patientPrognosisSupported": false,
+  "checks": [
+    {
+      "id": "five_year_error",
+      "passed": false,
+      "reason": "Personalised five-year error must improve over the same-sample baseline; this alone would not establish clinical accuracy."
+    },
+    {
+      "id": "survival_ranking",
+      "passed": false,
+      "reason": "Ranking must at least exceed chance; exceeding 0.5 alone would not establish clinical accuracy."
+    },
+    {
+      "id": "independent_validation",
+      "passed": false,
+      "reason": "The checking cycle was inspected during development; no independent final assessment exists."
+    },
+    {
+      "id": "lifetime_validation",
+      "passed": false,
+      "reason": "No evidence establishes accuracy beyond observed follow-up or validates the remaining-lifetime extrapolation."
+    },
+    {
+      "id": "clinical_record_validation",
+      "passed": false,
+      "reason": "Survey self-reports have not been validated as equivalent to the clinical-record inputs."
+    }
+  ],
+  "failedChecks": [
+    "five_year_error",
+    "survival_ranking",
+    "independent_validation",
+    "lifetime_validation",
+    "clinical_record_validation"
+  ],
+  "nextEvidenceRequired": [
+    "Suitable clinical/outcome data with permitted access and use.",
+    "An independent assessment against a predefined protocol, including lifetime assumptions.",
+    "Review of clinical input mappings and uncertainty before patient use."
+  ],
+  "trace": [
+    "prepare_cycle",
+    "fit_research_model",
+    "evaluate_model",
+    "model_fingerprint",
+    "assess_feasibility"
+  ],
+  "scope": "Completion of a feasibility assessment, not approval of a patient-prognosis model."
+}

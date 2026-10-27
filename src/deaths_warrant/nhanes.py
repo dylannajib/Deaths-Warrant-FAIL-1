@@ -4,6 +4,7 @@ import pandas as pd
 LMF_COLSPECS = [(0, 6), (14, 15), (15, 16), (16, 19), (19, 20), (20, 21), (42, 45), (45, 48)]
 LMF_NAMES = ["seqn", "eligstat", "mortstat", "ucod_leading", "diabetes", "hyperten", "permth_int", "permth_exm"]
 
+# Read fixed-width NHANES mortality records while preserving leading zeroes in cause codes.
 def load_lmf(path):
     """Read an NHANES public-use linked mortality dat. file."""
     return pd.read_fwf(path, colspecs=LMF_COLSPECS, names=LMF_NAMES,
@@ -18,6 +19,7 @@ DEMO_COLUMNS = {
     "SDMVSTRA": "stratum",
 }
 
+# Select and rename NHANES demographic and survey-design columns from XPORT data.
 def load_demo(path):
     """Read an NHANES demographics .xpt file, keeping only the columns we use."""
     df = pd.read_sas(path, format="xport")
@@ -32,6 +34,7 @@ CAUSE_NAMES = {
     "009": "kidney", "010": "other"
 }
 
+# Convert eligible NHANES records to entry/exit ages, death causes and optional survey fields.
 def to_standard(merged):
     """Convert merged NHANES (LMF + DEMO) into the standard format"""
     df = merged[merged["eligstat"] == 1]

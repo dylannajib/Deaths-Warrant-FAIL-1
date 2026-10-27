@@ -11,10 +11,12 @@ const removecauseInput = document.querySelector("#remove-cause")
 let ready = false;
 let busy = false;
 
+// Enable analysis only after startup finishes and a file is selected with no request in progress.
 function updateAnalyseButton() {
     analyseButton.disabled = !ready || busy || fileInput.files.length === 0;
 }
 
+// Show the selected filename and refresh analysis availability after file selection.
 fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
     status.textContent = file
@@ -25,6 +27,7 @@ fileInput.addEventListener("change", () => {
 
 const worker = new Worker("./worker.js");
 
+// Reflect worker startup, results and errors in the progress and status controls.
 worker.addEventListener("message", (event) => {
     if (event.data.type === "loading") {
         progress.hidden = false; progress.value = event.data.completed; status.textContent = event.data.message;
@@ -39,6 +42,7 @@ worker.addEventListener("message", (event) => {
     }
 });
 
+// Read the selected CSV and send the requested analysis window and cause scenario to the worker.
 analyseButton.addEventListener("click", async(event) => {
     if (!ready || busy || fileInput.files.length === 0){
          return;

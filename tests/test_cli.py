@@ -1,5 +1,6 @@
 import json; import subprocess; import sys; import pytest
 
+# Check weighted year totals, method metadata and uncertainty warning in CLI JSON.
 def test_cli_weighted_json(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(
@@ -17,6 +18,7 @@ def test_cli_weighted_json(tmp_path):
     assert summary["weighted"] is True
     assert summary["warnings"] == ["Point estimates only. Survey-design uncertainty is not calculated."]
 
+# Ensure a missing CSV produces a readable CLI error without a traceback.
 def test_cli_missing_file(tmp_path):
     csv_path = tmp_path/"missing.csv"
     completed = subprocess.run(
@@ -27,6 +29,7 @@ def test_cli_missing_file(tmp_path):
     assert csv_path.name in completed.stderr
     assert "Traceback" not in completed.stderr
 
+# Ensure incomplete CSV schemas fail without emitting summary JSON.
 def test_cli_missing_columns(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text("id\nA")
@@ -38,6 +41,7 @@ def test_cli_missing_columns(tmp_path):
     assert "Missing required columns" in completed.stderr
     assert "Traceback" not in completed.stderr
 
+# Ensure the CLI rejects analysis beyond the final observed time.
 def test_cli_rejects_extrapolation(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(
@@ -51,6 +55,7 @@ def test_cli_rejects_extrapolation(tmp_path):
     assert "final recorded time" in completed.stderr
     assert "Traceback" not in completed.stderr
 
+# Ensure a header-only CSV fails with an empty-input error.
 def test_cli_empty_input(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text("id,entry_age,exit_age,status,cause,weight", encoding = "utf-8")
@@ -62,6 +67,7 @@ def test_cli_empty_input(tmp_path):
     assert completed.stdout == "", completed.stderr
     assert "Traceback" not in completed.stderr
 
+# Ensure NaN and infinite analysis bounds produce clean CLI errors.
 def test_cli_nonfinite_limits(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(
@@ -79,6 +85,7 @@ def test_cli_nonfinite_limits(tmp_path):
     assert completed_B.stdout == "", completed_B.stderr
     assert "Traceback" not in completed_A.stderr and "Traceback" not in completed_B.stderr
 
+# Ensure the analysis window cannot begin before the earliest participant entry.
 def test_cli_start_before_observation(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(
@@ -92,6 +99,7 @@ def test_cli_start_before_observation(tmp_path):
     assert completed.stdout == "", completed.stderr
     assert "Traceback" not in completed.stderr
 
+# Check the CLI's cause-removal year gain and assumption warning.
 def test_cli_remove_cause_scenario(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(
@@ -111,6 +119,7 @@ def test_cli_remove_cause_scenario(tmp_path):
     assert scenario["removed_cause"] == "heart"
     assert "Traceback" not in completed.stderr
 
+# Ensure an unrecognised cause label fails without a summary or traceback.
 def test_cli_rejects_unknown_cause(tmp_path):
     csv_path = tmp_path/"patient.csv"
     csv_path.write_text(

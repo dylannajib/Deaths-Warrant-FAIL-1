@@ -1,12 +1,14 @@
 import { getSinglePatient, isJsonObject, readBundleResources, validatePatientReferences } from "./fhir";
 import { addHistory, createProfile, readClinicalCode, readRecordDate, type PatientProfile } from "./patient-profile";
 
+// Match an explicit code and system within a FHIR coding array.
 function hasCode(value: unknown, system: string, codes: string[]): boolean {
   return isJsonObject(value) && Array.isArray(value.coding) && value.coding.some(coding =>
     isJsonObject(coding) && coding.system === system && typeof coding.code === "string" && codes.includes(coding.code)
   );
 }
 
+// Resolve supported clinical codings and reject assertions identifying conflicting conditions.
 function readEvidenceCode(value: unknown) {
   if (!isJsonObject(value) || !Array.isArray(value.coding)) return undefined;
   const recognised = value.coding.flatMap(coding => {
@@ -22,6 +24,7 @@ function readEvidenceCode(value: unknown) {
   return { field: recognised[0].field, historyOnly: recognised.every(code => code.historyOnly) }
 }
 
+// Extract age and explicit histories from supported single-patient FHIR evidence.
 export function readFhirProfile(value: unknown, asOf: string): PatientProfile {
   const resources = readBundleResources(value);
   validatePatientReferences(resources)

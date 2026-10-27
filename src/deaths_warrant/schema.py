@@ -1,5 +1,6 @@
 REQUIRED_COLUMNS = ["id", "entry_age", "exit_age", "status", "cause"]
 
+# Reject patient tables with missing columns, invalid ages or inconsistent death records.
 def validate(df):
     """Check that df follows the standard format. Raise ValueError if not."""
     missing = [c for c in REQUIRED_COLUMNS if c not in df.columns]

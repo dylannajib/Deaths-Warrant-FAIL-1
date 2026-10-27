@@ -24,6 +24,7 @@ const clinicalCodes: Record<string, { field: HistoryField; historyOnly: boolean 
   "275526006": { field: "previousStroke", historyOnly: true }
 };
 
+// Map explicitly supported SNOMED codes to history fields and their assertion scope.
 export function readClinicalCode(system: string, code: string) {
   if (system !== "http://snomed.info/sct" && system !== "2.16.840.1.113883.6.96") {
     return undefined
@@ -31,6 +32,7 @@ export function readClinicalCode(system: string, code: string) {
   return Object.hasOwn(clinicalCodes, code) ? clinicalCodes[code] : undefined
 }
 
+// Require a complete ISO calendar date that round-trips without normalisation.
 export function validateDate(value: string, label: string): string {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
     throw new Error (label + " must contain a complete YYYY-MM-DD date.")
@@ -42,6 +44,7 @@ export function validateDate(value: string, label: string): string {
   return value
 }
 
+// Validate supported evidence dates or timestamps and reject dates after assessment.
 export function readRecordDate(value: unknown, asOf: string): string {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}(T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d+)?(Z|[+-]([01]\d|2[0-3]):[0-5]\d))?$/.test(value)) {
     throw new Error ("Clinical evidence needs a complete date or supported date-time.")
@@ -56,6 +59,7 @@ export function readRecordDate(value: unknown, asOf: string): string {
   return date
 }
 
+// Calculate completed age at assessment and initialise all clinical histories as unknown.
 export function createProfile(birthDate: string | null, asOf: string): PatientProfile {
   validateDate(asOf, "Assessment date")
   let ageYears: number | null = null;
@@ -70,6 +74,7 @@ export function createProfile(birthDate: string | null, asOf: string): PatientPr
   return { asOf, ageYears, heartFailure: null, previousHeartAttack: null, previousStroke: null }
 }
 
+// Record an explicit history answer while rejecting contradictory prior evidence.
 export function addHistory(profile: PatientProfile, field: HistoryField, value: boolean): void {
   if (profile[field] !== null && profile[field] !== value) {
     throw new Error ("Conflicting clinical history for " + field + ".")
@@ -77,6 +82,7 @@ export function addHistory(profile: PatientProfile, field: HistoryField, value: 
   profile[field] = value;
 }
 
+// Require a supported age, documented heart failure and explicit prior-event answers.
 export function validateProfile(profile: PatientProfile): PrognosisInput {
   validateDate(profile.asOf, "Assessment date")
   if (profile.ageYears === null || !Number.isInteger(profile.ageYears) || profile.ageYears < 40 || profile.ageYears > 79) {

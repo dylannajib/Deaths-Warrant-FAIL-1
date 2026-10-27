@@ -1,6 +1,7 @@
 """Offline research data preparation and fitting; never imported by browser inference."""
 
 from math import exp, isfinite; import warnings
+from hashlib import sha256; import json
 import numpy as np; import pandas as pd
 from lifelines import WeibullAFTFitter, WeibullFitter
 from lifelines.exceptions import ConvergenceError, ConvergenceWarning
@@ -12,6 +13,7 @@ MODEL_VERSION = "nhanes-hf-weibull-0.1.0"
 FORMULA = "age_decades_from_60 + previousHeartAttack + previousStroke"
 PENALIZER = 0.01
 
+# Link NHANES sources and retain eligible heart-failure participants with complete histories.
 def prepare_cycle(medical_path, demo_path, mortality_path, cycle):
     medical = pd.read_sas(medical_path, format = "xport").rename(columns = {"SEQN": "seqn"})
     required = ["seqn", "MCQ160B", "MCQ160E", "MCQ160F"]
@@ -54,6 +56,7 @@ def prepare_cycle(medical_path, demo_path, mortality_path, cycle):
     }
     return table, report
 
+# Fit a penalised Weibull AFT model and export its scale coefficients and shape.
 def fit_parameters(table):
     if len(table) == 0 or table["death"].sum() == 0:
         raise ValueError("Fitting requires participants and observed deaths")
@@ -65,6 +68,7 @@ def fit_parameters(table):
     }
     return parameters
 
+# Fit the research model and seeded bootstrap replicates, rejecting unstable fits.
 def fit_research_model(table, bootstrap_samples = 100, seed = 20261027):
     if not isinstance(bootstrap_samples, int) or isinstance(bootstrap_samples, bool) or bootstrap_samples < 30:
         raise ValueError("At least 30 bootstrap fits are required")
@@ -99,6 +103,7 @@ def fit_research_model(table, bootstrap_samples = 100, seed = 20261027):
     model["training"]["bootstrapSuccessful"] = successful
     return validate_model(model)
 
+# Compare five-year survival error and outcome ranking against the checking cohort.
 def evaluate_model(model, training, checking):
     if checking.empty or training.empty:
         raise ValueError("Model checks require nonempty training and checking samples")
@@ -122,4 +127,49 @@ def evaluate_model(model, training, checking):
         "baselineBrier": float(np.mean((baseline_prediction - actual) ** 2)),
         "concordance": float(concordance_index(checking["follow_up_years"], means, checking["death"])),
         "assessment": "Development comparison only; not independent clinical or lifetime validation."
+    }
+
+# Hash validated model contents independently of JSON spacing and key order.
+def model_fingerprint(model):
+    validate_model(model)
+    contents = json.dumps(model, sort_keys = True, separators = (",", ":"), allow_nan = False)
+    return sha256(contents.encode("utf-8")).hexdigest()
+
+# Check matching model evidence and record why the candidate remains research-only.
+def assess_feasibility(model, report):
+    validate_model(model)
+    fingerprint = model_fingerprint(model)
+    if not isinstance(report, dict) or report.get("modelVersion") != model["modelVersion"]:
+        raise ValueError("Feasibility report must describe the same model version")
+    if report.get("modelFingerprint") != fingerprint:
+        raise ValueError("Feasibility report does not match these saved model settings")
+    evaluation = report.get("evaluation")
+    if not isinstance(evaluation, dict):
+        raise ValueError("Feasibility report requires development evaluation results")
+    for name in ["brier", "baselineBrier", "concordance"]:
+        value = evaluation.get(name)
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value) or not 0 <= value <= 1:
+            raise ValueError("Invalid evaluation metric: " + name)
+    checks = [
+        {"id": "five_year_error", "passed": evaluation["brier"] < evaluation["baselineBrier"],
+            "reason": "Personalised five-year error must improve over the same-sample baseline; this alone would not establish clinical accuracy."},
+        {"id": "survival_ranking", "passed": evaluation["concordance"] > 0.5,
+            "reason": "Ranking must at least exceed chance; exceeding 0.5 alone would not establish clinical accuracy."},
+        {"id": "independent_validation", "passed": False,
+            "reason": "The checking cycle was inspected during development; no independent final assessment exists."},
+        {"id": "lifetime_validation", "passed": False,
+            "reason": "No evidence establishes accuracy beyond observed follow-up or validates the remaining-lifetime extrapolation."},
+        {"id": "clinical_record_validation", "passed": False,
+            "reason": "Survey self-reports have not been validated as equivalent to the clinical-record inputs."}
+    ]
+    # This function assesses the experimental schema only; passing a metric cannot approve clinical use.
+    return {
+        "schemaVersion": 1, "modelVersion": model["modelVersion"], "modelFingerprint": fingerprint,
+        "assessmentComplete": True, "decision": "research_only", "patientPrognosisSupported": False,
+        "checks": checks, "failedChecks": [check["id"] for check in checks if not check["passed"]],
+        "nextEvidenceRequired": ["Suitable clinical/outcome data with permitted access and use.",
+            "An independent assessment against a predefined protocol, including lifetime assumptions.",
+            "Review of clinical input mappings and uncertainty before patient use."],
+        "trace": ["prepare_cycle", "fit_research_model", "evaluate_model", "model_fingerprint", "assess_feasibility"],
+        "scope": "Completion of a feasibility assessment, not approval of a patient-prognosis model."
     }

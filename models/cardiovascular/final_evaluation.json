@@ -1,0 +1,127 @@
+{
+  "modelFingerprint": "4c216112efd00fe5db97aeb61a1b7b56b786da389b33b77d78bd1955518cffec",
+  "cycle": "2009-2010",
+  "preparation": {
+    "cycle": "2009-2010",
+    "demographicParticipants": 10537,
+    "examinedAge40To79": 3630,
+    "mortalityEligible": 3621,
+    "reportedCardiovascularHistory": 471,
+    "missingByFeatureBeforeExclusions": {
+      "ageYears": 0,
+      "recordedSex": 0,
+      "heartFailure": 7,
+      "coronaryHeartDisease": 8,
+      "angina": 7,
+      "previousHeartAttack": 2,
+      "previousStroke": 1,
+      "diabetes": 16,
+      "currentSmoker": 0,
+      "bmi": 8,
+      "systolicBloodPressure": 15,
+      "creatinine": 33
+    },
+    "excludedZeroFollowUp": 0,
+    "excludedMissingPredictorsAfterZeroFollowUp": 82,
+    "included": 389,
+    "deaths": 134
+  },
+  "sources": [
+    {
+      "file": "DEMO_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DEMO_F.xpt",
+      "bytes": 3631600,
+      "sha256": "78c4d4a6e5eafa9da3bbb24a90d140fef5d8c0cda932a7ff8ee609288d4fae07"
+    },
+    {
+      "file": "MCQ_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/MCQ_F.xpt",
+      "bytes": 6562720,
+      "sha256": "c2f0f9223c6a9e38e5bf6d26501c4b11d3cfd97b82db46e1c9c266f24761c457"
+    },
+    {
+      "file": "BMX_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BMX_F.xpt",
+      "bytes": 1890560,
+      "sha256": "1fa42e07764037674c3f56e1e76f990e10c32245897597de3d731c57b91d869a"
+    },
+    {
+      "file": "BIOPRO_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BIOPRO_F.xpt",
+      "bytes": 2187200,
+      "sha256": "d138350f6a9318bb6a411b67f511e8eded677baa6ca8f4cad70dd86a0f0f428a"
+    },
+    {
+      "file": "BPX_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/BPX_F.xpt",
+      "bytes": 2219280,
+      "sha256": "d09af545c732e5fb72c437e870823ec5d9efaed1ef3522210dcc1d8f47b9be57"
+    },
+    {
+      "file": "DIQ_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/DIQ_F.xpt",
+      "bytes": 1620960,
+      "sha256": "7e90371cbc98e77a9684eff32ffa0e4ee3e8fc04d97581a8773e19cb9fe901fa"
+    },
+    {
+      "file": "SMQ_F.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2009/DataFiles/SMQ_F.xpt",
+      "bytes": 2580560,
+      "sha256": "ee85c82ea55046eb7bf491088b5bb9efecbea8aaf66ae8c89123bad23a5f1901"
+    },
+    {
+      "file": "NHANES_2009_2010_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2009_2010_MORT_2019_PUBLIC.dat",
+      "bytes": 517751,
+      "sha256": "eabf074331e20d3f3cbb8ddf21e3a43e517f5694187c12b755741f4472894786"
+    }
+  ],
+  "evaluation": {
+    "participants": 389,
+    "deaths": 134,
+    "horizons": {
+      "1": {
+        "meanPredictedSurvival": 0.9840143785412032,
+        "observedKaplanMeierSurvival": 0.9871465295629824,
+        "brier": 0.01314634076383621,
+        "exponentialBrier": 0.013416947672619561,
+        "weibullBrier": 0.012706102870463417,
+        "deathsByHorizon": 5,
+        "earlyCensored": 0
+      },
+      "3": {
+        "meanPredictedSurvival": 0.9219730342944945,
+        "observedKaplanMeierSurvival": 0.9357326478149103,
+        "brier": 0.0644126839807993,
+        "exponentialBrier": 0.06269494366083458,
+        "weibullBrier": 0.06030813024264456,
+        "deathsByHorizon": 25,
+        "earlyCensored": 0
+      },
+      "5": {
+        "meanPredictedSurvival": 0.8461552496956256,
+        "observedKaplanMeierSurvival": 0.8740359897172244,
+        "brier": 0.1097656909107957,
+        "exponentialBrier": 0.11370986298917864,
+        "weibullBrier": 0.11094376599055979,
+        "deathsByHorizon": 49,
+        "earlyCensored": 0
+      }
+    },
+    "concordance": 0.6770299321977841,
+    "outsideTrainingMeasurementRanges": 2,
+    "baselineMeanYears": 24.5921568627451,
+    "assessment": "Statistical checks only; lifetime extrapolation and clinical input equivalence remain unvalidated."
+  },
+  "decision": {
+    "improvesBothFiveYearBaselines": true,
+    "ranksAboveChance": true,
+    "patientPrognosisSupported": false,
+    "reason": "Separate-period statistical checking does not validate lifetime extrapolation, clinical inputs or treatment effects."
+  },
+  "limitations": [
+    "Separate-period survey sample, not forward-temporal or clinical validation.",
+    "Final means beyond observed follow-up cannot be checked from these outcomes.",
+    "Bootstrap uncertainty is ordinary resampling, not full survey-design uncertainty."
+  ]
+}

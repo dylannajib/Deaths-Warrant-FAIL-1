@@ -1,3 +1,4 @@
+# Integrate a step curve over the requested window without extrapolating past observations.
 def integrate_step(times, values, start, tau, initial_value):
     if not (len(times) == len(values)):
         raise ValueError("Lengths of times and values must be equal (integrate step)")
@@ -23,6 +24,7 @@ def integrate_step(times, values, start, tau, initial_value):
     area += (tau - current_time)*(current_value)
     return(area)
 
+# Calculate restricted years lived and cause-specific years lost conditional on survival at start.
 def summarise_years(table, start, tau):
     cause_columns = []
     for cause in table.columns:

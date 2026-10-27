@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "planVersion": "cardiovascular-data-v1",
+  "purpose": "Data preparation only; no model fitted",
+  "features": [
+    "ageYears",
+    "recordedSex",
+    "heartFailure",
+    "coronaryHeartDisease",
+    "angina",
+    "previousHeartAttack",
+    "previousStroke",
+    "diabetes",
+    "currentSmoker",
+    "bmi",
+    "systolicBloodPressure",
+    "creatinine"
+  ],
+  "outcome": {
+    "event": "all-cause death",
+    "origin": "NHANES examination",
+    "units": "years",
+    "followUpThrough": 2019
+  },
+  "developmentCycles": [
+    "2007-2008",
+    "2011-2012",
+    "2013-2014"
+  ],
+  "cycles": [
+    {
+      "cycle": "2007-2008",
+      "demographicParticipants": 10149,
+      "examinedAge40To79": 3474,
+      "mortalityEligible": 3473,
+      "reportedCardiovascularHistory": 508,
+      "missingByFeatureBeforeExclusions": {
+        "ageYears": 0,
+        "recordedSex": 0,
+        "heartFailure": 8,
+        "coronaryHeartDisease": 11,
+        "angina": 9,
+        "previousHeartAttack": 4,
+        "previousStroke": 3,
+        "diabetes": 19,
+        "currentSmoker": 0,
+        "bmi": 23,
+        "systolicBloodPressure": 25,
+        "creatinine": 44
+      },
+      "excludedZeroFollowUp": 0,
+      "excludedMissingPredictorsAfterZeroFollowUp": 117,
+      "included": 391,
+      "deaths": 173
+    },
+    {
+      "cycle": "2011-2012",
+      "demographicParticipants": 9756,
+      "examinedAge40To79": 3115,
+      "mortalityEligible": 3109,
+      "reportedCardiovascularHistory": 404,
+      "missingByFeatureBeforeExclusions": {
+        "ageYears": 0,
+        "recordedSex": 0,
+        "heartFailure": 6,
+        "coronaryHeartDisease": 10,
+        "angina": 3,
+        "previousHeartAttack": 2,
+        "previousStroke": 0,
+        "diabetes": 14,
+        "currentSmoker": 0,
+        "bmi": 15,
+        "systolicBloodPressure": 15,
+        "creatinine": 44
+      },
+      "excludedZeroFollowUp": 0,
+      "excludedMissingPredictorsAfterZeroFollowUp": 92,
+      "included": 312,
+      "deaths": 85
+    },
+    {
+      "cycle": "2013-2014",
+      "demographicParticipants": 10175,
+      "examinedAge40To79": 3376,
+      "mortalityEligible": 3368,
+      "reportedCardiovascularHistory": 420,
+      "missingByFeatureBeforeExclusions": {
+        "ageYears": 0,
+        "recordedSex": 0,
+        "heartFailure": 2,
+        "coronaryHeartDisease": 4,
+        "angina": 2,
+        "previousHeartAttack": 0,
+        "previousStroke": 1,
+        "diabetes": 26,
+        "currentSmoker": 0,
+        "bmi": 12,
+        "systolicBloodPressure": 17,
+        "creatinine": 15
+      },
+      "excludedZeroFollowUp": 0,
+      "excludedMissingPredictorsAfterZeroFollowUp": 68,
+      "included": 352,
+      "deaths": 61
+    }
+  ],
+  "splitSeed": 20261027,
+  "splitMethod": "Fixed SHA-256 participant assignment, approximately 80/20 within development; independent of outcomes.",
+  "training": {
+    "participants": 838,
+    "deaths": 255
+  },
+  "validation": {
+    "participants": 217,
+    "deaths": 64
+  },
+  "finalChecking": {
+    "cycle": "2009-2010",
+    "status": "reserved_not_downloaded_or_opened_by_this_pipeline",
+    "reason": "Separate previously uninspected survey cycle with potential follow-up beyond five years.",
+    "limitation": "Earlier than some development cycles; not a forward-temporal or independent clinical-population assessment."
+  },
+  "noParticipantRowsInSummary": true,
+  "sources": [
+    {
+      "file": "DEMO_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/DEMO_E.xpt",
+      "bytes": 3498080,
+      "sha256": "02b8e97703d04bc99769c751881bece51ac9ba68cf18a2992a45d3bdfb856147"
+    },
+    {
+      "file": "MCQ_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/MCQ_E.xpt",
+      "bytes": 7127840,
+      "sha256": "dfbe11c6b036ec4e79aeba7805833fc4951c74662a9510066c3a93932f6990e6"
+    },
+    {
+      "file": "BMX_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BMX_E.xpt",
+      "bytes": 1800240,
+      "sha256": "b67b50dbd12c9510b49b6348b595b9fd073c422c0c6eac182f90ac57b491a97d"
+    },
+    {
+      "file": "BIOPRO_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BIOPRO_E.xpt",
+      "bytes": 2053360,
+      "sha256": "6c2cec1e790c09e0319bf5a576a2ab64861d4270679c8113663f83a6b7087ced"
+    },
+    {
+      "file": "BPX_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/BPX_E.xpt",
+      "bytes": 2113200,
+      "sha256": "5a0303e68e0a4d7ebdbd2bc82f87852c31e44f1733782e107219bed9303baed5"
+    },
+    {
+      "file": "DIQ_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/DIQ_E.xpt",
+      "bytes": 2789600,
+      "sha256": "fb4d698fbec26bc8a09b2cd0f3019f815114742dd2c37ccac1aaf5e0123394c5"
+    },
+    {
+      "file": "SMQ_E.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2007/DataFiles/SMQ_E.xpt",
+      "bytes": 2449520,
+      "sha256": "881865ee05f4b2be0c03c761f00ad8e355f2cc5e7d3be41666edef6f3dca5862"
+    },
+    {
+      "file": "NHANES_2007_2008_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2007_2008_MORT_2019_PUBLIC.dat",
+      "bytes": 498376,
+      "sha256": "75f89bd545a13ba726a7eb56de4d62f6dfc8f0f76d505dc18ced9752d5e2c77d"
+    },
+    {
+      "file": "DEMO_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DEMO_G.xpt",
+      "bytes": 3753760,
+      "sha256": "eaf0525d1952626885af3e935415a1f66ad62c18698080e7354789c125af252d"
+    },
+    {
+      "file": "MCQ_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/MCQ_G.xpt",
+      "bytes": 6905520,
+      "sha256": "7538eb86c72b81fd5e76b56120fcb068ed38149d44650e9e750670ad58658d52"
+    },
+    {
+      "file": "BMX_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BMX_G.xpt",
+      "bytes": 1946720,
+      "sha256": "4814bfc3047ed400b9d43d285f8c3ea7c940ac6489404a9b699579715d158ec3"
+    },
+    {
+      "file": "BIOPRO_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BIOPRO_G.xpt",
+      "bytes": 1997040,
+      "sha256": "8c3a0b1bea79ff79c5600ad6a76c4206a7d689479f94ae81da6360058eda5d05"
+    },
+    {
+      "file": "BPX_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/BPX_G.xpt",
+      "bytes": 2021600,
+      "sha256": "1dd66110f41465d601cd54f1e3c6010baafb9375f09fbcaa3aef2536876146fd"
+    },
+    {
+      "file": "DIQ_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/DIQ_G.xpt",
+      "bytes": 3978560,
+      "sha256": "a9d5475e0cd66d6a7bc30230345ed0172a9abcbc0a7a4145a35025c827a52a87"
+    },
+    {
+      "file": "SMQ_G.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/SMQ_G.xpt",
+      "bytes": 1946960,
+      "sha256": "69f2375f036a815082b1e97110e79c505b91e0985c61696f8eaacf94828115dc"
+    },
+    {
+      "file": "NHANES_2011_2012_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2011_2012_MORT_2019_PUBLIC.dat",
+      "bytes": 475574,
+      "sha256": "ff98b6c87172643426b1c6d20f76495592bebd618ea18f742d98a44b84456b30"
+    },
+    {
+      "file": "DEMO_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/DEMO_H.xpt",
+      "bytes": 3833200,
+      "sha256": "f8f0cbb3085a323d4cde22349b164878fea1e64dbc404e65b5815c7816b547d7"
+    },
+    {
+      "file": "MCQ_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/MCQ_H.xpt",
+      "bytes": 7439280,
+      "sha256": "5c83210e6e1fe929282621322ed0f94d95cdb0a37ccaff36f703ab0b2e7b9dc6"
+    },
+    {
+      "file": "BMX_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BMX_H.xpt",
+      "bytes": 2045520,
+      "sha256": "fd5e9fc6e6aab0a4aee6e699f51497bbc9b62101f7f43aee924c473e38fd9442"
+    },
+    {
+      "file": "BIOPRO_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BIOPRO_H.xpt",
+      "bytes": 2127760,
+      "sha256": "b114fde7fc46933e6b4e3f620b8e7b61ea5b46f82121c0dc05a7b8c1fbdd0548"
+    },
+    {
+      "file": "BPX_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/BPX_H.xpt",
+      "bytes": 1809600,
+      "sha256": "b6641efc30ac9b9de328dfbf4110d0d120439aadca2c2bc89f2e77310d1a0c8e"
+    },
+    {
+      "file": "DIQ_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/DIQ_H.xpt",
+      "bytes": 4228960,
+      "sha256": "c74c7ccef65e6997dfac1db1e73bc3f63dec67c70b2e322ffc14f14ce27429a9"
+    },
+    {
+      "file": "SMQ_H.xpt",
+      "url": "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/SMQ_H.xpt",
+      "bytes": 2170000,
+      "sha256": "86d74bb8842ce6d60350944417cbd3e9ee39dd5a9fa1bda33426f276b673861f"
+    },
+    {
+      "file": "NHANES_2013_2014_MORT_2019_PUBLIC.dat",
+      "url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/NHANES_2013_2014_MORT_2019_PUBLIC.dat",
+      "bytes": 494268,
+      "sha256": "588acea1d4cdf47a14cc9a35bd56e372739b8788d63ca0af98bf954c70c29905"
+    }
+  ]
+}

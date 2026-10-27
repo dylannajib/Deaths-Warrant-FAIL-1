@@ -2,6 +2,7 @@ type CcdPatientIdentifier = {
     root: string; extension?: string;
 };
 
+// Parse a CDA document while rejecting entity declarations, malformed XML and incorrect roots.
 export function parseCdaXml(xmlText: string): Document {
     if (/<!DOCTYPE|<!ENTITY/i.test(xmlText)) {
         throw new Error("XML document types and entity declarations are not supported.")
@@ -20,6 +21,7 @@ export function parseCdaXml(xmlText: string): Document {
     return xmlDocument
 }
 
+// Look for a matching template identifier directly under the CDA document root.
 function hasCdaTemplate(xmlDocument: Document, templateRoot: string): boolean {
     return Array.from(xmlDocument.documentElement.children).some(element =>
         element.namespaceURI === "urn:hl7-org:v3" &&
@@ -28,6 +30,7 @@ function hasCdaTemplate(xmlDocument: Document, templateRoot: string): boolean {
     );
 }
 
+// Require declarations for both the US Realm Header and CCD document templates.
 export function validateCcdTemplates(xmlDocument: Document): void{
     if (!hasCdaTemplate(xmlDocument, "2.16.840.1.113883.10.20.22.1.1")) {
         throw new Error ("Document must declare a supported US Realm Header tempalte.")
@@ -36,6 +39,7 @@ export function validateCcdTemplates(xmlDocument: Document): void{
     }
 }
 
+// Select direct children with the requested local name in the CDA namespace.
 export function getCdaChildren(parent: Element, name: string): Element[] {
     return Array.from(parent.children).filter(element =>
         element.namespaceURI === "urn:hl7-org:v3" &&
@@ -43,6 +47,7 @@ export function getCdaChildren(parent: Element, name: string): Element[] {
     );
 }
 
+// Require one record target, patient role and patient before returning the role.
 export function getCcdPatientRole(xmlDocument: Document): Element {
     const recordTargets = getCdaChildren(xmlDocument.documentElement, "recordTarget")
     if (recordTargets.length !== 1) {
@@ -62,6 +67,7 @@ export function getCcdPatientRole(xmlDocument: Document): Element {
     return patientRoles[0]
 }
 
+// Collect usable patient identifiers and reject missing roots or blank extensions.
 export function readCcdPatientIdentifiers(patientRole: Element): CcdPatientIdentifier[] {
     const idElements = getCdaChildren(patientRole, "id")
     const identifiers: CcdPatientIdentifier[] = [];

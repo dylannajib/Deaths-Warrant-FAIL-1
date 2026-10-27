@@ -4,6 +4,7 @@ import { readFhirProfile } from "./fhir-profile";
 import { validateProfile } from "./patient-profile";
 
 const expected = JSON.parse(readFileSync("../tests/fixtures/prognosis/patient-profile.json", "utf8"));
+// Load a fresh FHIR clinical bundle so each test can mutate it independently.
 function fixture() {
   return JSON.parse(readFileSync("../tests/fixtures/fhir/heart-failure-profile.json", "utf8"));
 }

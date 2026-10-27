@@ -1,10 +1,12 @@
 import { getCdaChildren, getCcdPatientRole, parseCdaXml, readCcdPatientIdentifiers, validateCcdTemplates } from "./ccda";
 import { addHistory, createProfile, readClinicalCode, readRecordDate, type PatientProfile } from "./patient-profile";
 
+// Check direct CDA template declarations against the supported identifier roots.
 function hasTemplate(element: Element, roots: string[]): boolean {
     return getCdaChildren(element, "templateId").some(template => roots.includes(template.getAttribute("root") ?? ""))
 }
 
+// Validate a complete CDA timestamp and reject evidence dated after assessment.
 function readCdaDate(element: Element | undefined, asOf: string): string {
     const value = element?.getAttribute("value");
     if (!value || !/^\d{8}(\d{6}([+-]\d{4})?)?$/.test(value)) {
@@ -20,6 +22,7 @@ function readCdaDate(element: Element | undefined, asOf: string): string {
     return readRecordDate(value.slice(0, 4) + "-" + value.slice(4, 6) + "-" + value.slice(6, 8), asOf)
 }
 
+// Extract age and supported coded histories from completed CCD problem observations.
 export function readCcdProfile(xmlText: string, asOf: string): PatientProfile {
     const document = parseCdaXml(xmlText);
     validateCcdTemplates(document)

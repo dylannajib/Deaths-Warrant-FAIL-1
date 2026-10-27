@@ -1,0 +1,106 @@
+{
+  "protocol": {
+    "version": "cardiovascular-assessment-v1",
+    "candidate": "unweighted_weibull_aft",
+    "formula": "ageYears + C(recordedSex) + heartFailure + coronaryHeartDisease + angina + previousHeartAttack + previousStroke + diabetes + currentSmoker + bmi + systolicBloodPressure + creatinine",
+    "penalizer": 0.01,
+    "seed": 20261027,
+    "bootstrapSamples": 100,
+    "selection": "Fixed unweighted candidate; normalised examination weights are sensitivity only, not used to select the winner.",
+    "baselines": [
+      "exponential",
+      "weibull"
+    ],
+    "horizons": [
+      1,
+      3,
+      5
+    ],
+    "primaryMetric": "five-year IPCW Brier error versus both training-fitted baselines",
+    "censoring": "Unweighted training Kaplan\u2013Meier censoring distribution; assumes independent censoring.",
+    "finalCycle": "2009-2010",
+    "clinicalRelease": false,
+    "lifetime": "Weibull mean extrapolation is not validated by five-year error or concordance."
+  },
+  "validation": {
+    "participants": 217,
+    "deaths": 64,
+    "horizons": {
+      "1": {
+        "meanPredictedSurvival": 0.9835000382704565,
+        "observedKaplanMeierSurvival": 0.9723502304147466,
+        "brier": 0.026351516280159856,
+        "exponentialBrier": 0.02703404956317013,
+        "weibullBrier": 0.02699702843159615,
+        "deathsByHorizon": 6,
+        "earlyCensored": 0
+      },
+      "3": {
+        "meanPredictedSurvival": 0.9182992492044865,
+        "observedKaplanMeierSurvival": 0.9216589861751147,
+        "brier": 0.06874822053509114,
+        "exponentialBrier": 0.07353608562565926,
+        "weibullBrier": 0.0722046879408181,
+        "deathsByHorizon": 17,
+        "earlyCensored": 0
+      },
+      "5": {
+        "meanPredictedSurvival": 0.8379913697328619,
+        "observedKaplanMeierSurvival": 0.8433179723502306,
+        "brier": 0.1251024877283215,
+        "exponentialBrier": 0.1326527843531009,
+        "weibullBrier": 0.13200428882189563,
+        "deathsByHorizon": 34,
+        "earlyCensored": 3
+      }
+    },
+    "concordance": 0.6646805013355249,
+    "outsideTrainingMeasurementRanges": 2,
+    "baselineMeanYears": 24.5921568627451,
+    "assessment": "Statistical checks only; lifetime extrapolation and clinical input equivalence remain unvalidated."
+  },
+  "weightedSensitivity": {
+    "participants": 217,
+    "deaths": 64,
+    "horizons": {
+      "1": {
+        "meanPredictedSurvival": 0.9893871110825251,
+        "observedKaplanMeierSurvival": 0.9723502304147466,
+        "brier": 0.026561595904229317,
+        "exponentialBrier": 0.02703404956317013,
+        "weibullBrier": 0.02699702843159615,
+        "deathsByHorizon": 6,
+        "earlyCensored": 0
+      },
+      "3": {
+        "meanPredictedSurvival": 0.9334596537391401,
+        "observedKaplanMeierSurvival": 0.9216589861751147,
+        "brier": 0.06871765244521921,
+        "exponentialBrier": 0.07353608562565926,
+        "weibullBrier": 0.0722046879408181,
+        "deathsByHorizon": 17,
+        "earlyCensored": 0
+      },
+      "5": {
+        "meanPredictedSurvival": 0.8543983863504025,
+        "observedKaplanMeierSurvival": 0.8433179723502306,
+        "brier": 0.12553573628475012,
+        "exponentialBrier": 0.1326527843531009,
+        "weibullBrier": 0.13200428882189563,
+        "deathsByHorizon": 34,
+        "earlyCensored": 3
+      }
+    },
+    "concordance": 0.6615985206492706,
+    "outsideTrainingMeasurementRanges": 2,
+    "baselineMeanYears": 24.5921568627451,
+    "assessment": "Statistical checks only; lifetime extrapolation and clinical input equivalence remain unvalidated."
+  },
+  "decision": {
+    "improvesBothFiveYearBaselines": true,
+    "ranksAboveChance": true,
+    "patientPrognosisSupported": false,
+    "reason": "Separate-period statistical checking does not validate lifetime extrapolation, clinical inputs or treatment effects."
+  },
+  "modelFingerprint": "4c216112efd00fe5db97aeb61a1b7b56b786da389b33b77d78bd1955518cffec"
+}

@@ -12,10 +12,12 @@ needs_data = pytest.mark.skipif(
     )
 
 @needs_data
+# Check the local 2013-2014 mortality file contains the expected participant count.
 def test_row_count():
     df = load_lmf(LMF_PATH)
     assert len(df) == 10175
 @needs_data
+# Check mortality outcomes account for exactly the linkage-eligible participants.
 def test_alive_plus_dead_equals_eligible():
     df = load_lmf(LMF_PATH)
     alive = (df["mortstat"] == 0).sum()
@@ -23,24 +25,28 @@ def test_alive_plus_dead_equals_eligible():
     eligible = (df["eligstat"] == 1).sum()
     assert alive + dead == eligible
 @needs_data
+# Check cause codes appear exactly on records marked as deaths.
 def test_every_death_needs_a_cause():
     df = load_lmf(LMF_PATH)
     has_cause = df["ucod_leading"].notna()
     is_dead = df["mortstat"].eq(1)
     assert (has_cause == is_dead).all()
 @needs_data
+# Check mortality status is missing exactly when linkage eligibility is absent.
 def test_mortstat_blank_if_not_eligible():
     df = load_lmf(LMF_PATH)
     is_blank = df["mortstat"].isna()
     not_eligible = (df["eligstat"] != 1)
     assert (is_blank == not_eligible).all()
 @needs_data
+# Ensure joining local mortality and demographic files preserves every participant.
 def test_merge_keeps_everyone():
     lmf = load_lmf(LMF_PATH)
     demo = load_demo(DEMO_PATH)
     df = lmf.merge(demo, on="seqn", how="inner", validate="one_to_one")
     assert len(df) == 10175
 @needs_data
+# Check linkage eligibility code two identifies precisely the under-18 participants.
 def test_children_are_exactly_eligstat_2():
     lmf = load_lmf(LMF_PATH)
     demo = load_demo(DEMO_PATH)
@@ -49,6 +55,7 @@ def test_children_are_exactly_eligstat_2():
     is_eligstat_2 = df["eligstat"] == 2
     assert (is_child == is_eligstat_2).all()
 
+# Check age conversion, eligibility filtering and cause mapping on a small synthetic cohort.
 def test_to_standard_small_example():
     merged = pd.DataFrame({
         "seqn": [1, 2, 3],
@@ -68,6 +75,7 @@ def test_to_standard_small_example():
     assert list(out["age_topcoded"]) == [False, False]
 
 @needs_data
+# Check the converted local cohort meets the patient schema and expected death counts.
 def test_real_data_passes_validation():
     lmf = load_lmf(LMF_PATH)
     demo = load_demo(DEMO_PATH)
@@ -77,6 +85,7 @@ def test_real_data_passes_validation():
     assert len(out) == 6100
     assert (out["status"] == 1).sum() == 467
 
+# Ensure optional weights, strata and PSU identifiers survive eligibility filtering.
 def test_to_standard_preserves_survey_fields():
     merged = pd.DataFrame({
         "seqn": [1, 2, 3],

@@ -13,11 +13,13 @@ WARNINGS = [
     "Does not estimate treatment effects or years attributable to individual conditions."
 ]
 
+# Reject booleans and nonfinite values before converting a numeric field to float.
 def _number(value, name):
     if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value):
         raise ValueError(name + " must be a finite number")
     return float(value)
 
+# Require the supported assessment date, age range and explicit heart-failure histories.
 def validate_profile(profile):
     if not isinstance(profile, dict):
         raise ValueError("Patient profile must be an object")
@@ -42,6 +44,7 @@ def validate_profile(profile):
             raise ValueError(field + " requires an explicit boolean history; missing does not mean no")
     return dict(profile, ageYears = int(age))
 
+# Require four finite coefficients and a positive finite Weibull shape.
 def _validate_parameters(parameters):
     if not isinstance(parameters, dict) or set(parameters) != {"coefficients", "shape"}:
         raise ValueError("Model parameters must contain coefficients and shape")
@@ -53,6 +56,7 @@ def _validate_parameters(parameters):
     if _number(parameters["shape"], "Weibull shape") <= 0:
         raise ValueError("Weibull shape must be positive")
 
+# Check the experimental model schema, feature order and all saved parameter sets.
 def validate_model(model):
     if not isinstance(model, dict) or type(model.get("schemaVersion")) is not int or model["schemaVersion"] != 1:
         raise ValueError("Unsupported prognosis model schema")
@@ -70,6 +74,7 @@ def validate_model(model):
         _validate_parameters(sample)
     return model
 
+# Read model JSON and reject unreadable files or unsupported model contents.
 def load_model(path):
     try:
         model = json.loads(Path(path).read_text(encoding = "utf-8"))
@@ -77,6 +82,7 @@ def load_model(path):
         raise ValueError("Could not read prognosis model: " + str(error)) from error
     return validate_model(model)
 
+# Calculate Weibull mean remaining years and fixed-horizon survival from age and histories.
 def _estimate(profile, parameters):
     values = [1, (profile["ageYears"] - 60) / 10, int(profile["previousHeartAttack"]), int(profile["previousStroke"])]
     log_scale = sum(coefficient * value for coefficient, value in zip(parameters["coefficients"], values))
@@ -93,12 +99,14 @@ def _estimate(profile, parameters):
         raise ValueError("Model produced an unsupported remaining-years estimate")
     return mean, survival
 
+# Interpolate between adjacent sorted samples at the requested quantile.
 def _percentile(values, fraction):
     position = (len(values) - 1) * fraction
     lower = int(position)
     upper = min(lower + 1, len(values) - 1)
     return values[lower] + (values[upper] - values[lower]) * (position - lower)
 
+# Return research-only Weibull estimates and optional bootstrap uncertainty for the mean.
 def predict_prognosis(profile, model, research_mode = False):
     if research_mode is not True:
         raise ValueError("This unvalidated model can only run with research_mode=True")

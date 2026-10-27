@@ -1,0 +1,273 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "synthetic-cvd",
+        "birthDate": "1966-01-01",
+        "gender": "female"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "RIDAGEYR"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 60
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "RIAGENDR"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160B"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160C"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160D"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160E"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160F"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "DIQ010"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "SMQ020"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "SMQ040"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 27.5,
+          "system": "http://unitsofmeasure.org",
+          "code": "kg/m2"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 128,
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-cvd"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2160-0"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 1.1,
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        }
+      }
+    }
+  ]
+}

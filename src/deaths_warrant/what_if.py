@@ -1,5 +1,6 @@
 from deaths_warrant.km import event_table; import pandas as pd
 
+# Censor deaths from one cause and return the resulting survival scenario with its assumptions.
 def remove_cause(times, causes, cause_to_remove, entry=None, weights=None):
     if cause_to_remove == 0:
         raise ValueError("Cause to remove cannot be censored")

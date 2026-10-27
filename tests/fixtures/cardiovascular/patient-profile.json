@@ -1,0 +1,15 @@
+{
+  "asOf": "2026-01-01",
+  "ageYears": 60,
+  "recordedSex": 2,
+  "heartFailure": true,
+  "coronaryHeartDisease": false,
+  "angina": true,
+  "previousHeartAttack": false,
+  "previousStroke": false,
+  "diabetes": false,
+  "currentSmoker": true,
+  "bmi": 27.5,
+  "systolicBloodPressure": 128,
+  "creatinine": 1.1
+}

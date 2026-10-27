@@ -5,6 +5,7 @@ import pytest
 from deaths_warrant import prognosis_training as training
 from deaths_warrant.prognosis import validate_model
 
+# Check the fitted Weibull parameters recover known effects from censored simulated lifetimes.
 def test_recovers_known_simulated_effects_with_censoring():
     random = np.random.default_rng(412)
     count = 1200
@@ -21,6 +22,7 @@ def test_recovers_known_simulated_effects_with_censoring():
     assert parameters["coefficients"] == pytest.approx([2.3, -0.3, -0.25, -0.4], abs = 0.15)
 
 @pytest.fixture
+# Replace NHANES readers with mutable synthetic records for linkage and exclusion checks.
 def cycle_sources(monkeypatch):
     medical = pd.DataFrame({"SEQN": [1., 2., 3., 4., 5.], "MCQ160B": [1, 1, 1, 1, 2],
         "MCQ160E": [1, 9, 2, 2, 2], "MCQ160F": [2, 2, 2, 7, 2]})
@@ -32,6 +34,7 @@ def cycle_sources(monkeypatch):
     monkeypatch.setattr(training, "load_lmf", lambda path: mortality.copy())
     return medical, demo, mortality
 
+# Check cohort selection removes unknown histories and ages outside the model range.
 def test_preparation_excludes_unknown_histories_and_topcoded_ages(cycle_sources):
     table, report = training.prepare_cycle("medical", "demo", "mortality", "fictional")
     assert len(table) == 1
@@ -41,22 +44,26 @@ def test_preparation_excludes_unknown_histories_and_topcoded_ages(cycle_sources)
     assert report["excludedUnknownHistory"] == 2
     assert report["eligibleAge40To79"] == 3
 
+# Ensure a questionnaire participant without a mortality record fails preparation.
 def test_preparation_detects_missing_linkage(cycle_sources):
     cycle_sources[2].drop(index = 0, inplace = True)
     with pytest.raises(ValueError, match = "lack a mortality"):
         training.prepare_cycle("medical", "demo", "mortality", "fictional")
 
+# Ensure duplicate questionnaire IDs fail the one-to-one linkage requirement.
 def test_preparation_rejects_duplicate_ids(cycle_sources):
     cycle_sources[0].loc[1, "SEQN"] = 1
     with pytest.raises(pd.errors.MergeError):
         training.prepare_cycle("medical", "demo", "mortality", "fictional")
 
+# Ensure nonfinite follow-up cannot enter the training cohort.
 def test_preparation_rejects_invalid_follow_up(cycle_sources):
     cycle_sources[2]["permth_int"] = cycle_sources[2]["permth_int"].astype(float)
     cycle_sources[2].loc[0, "permth_int"] = float("inf")
     with pytest.raises(ValueError, match = "positive follow-up"):
         training.prepare_cycle("medical", "demo", "mortality", "fictional")
 
+# Check seeded bootstrap output is repeatable and records its unweighted training settings.
 def test_bootstrap_is_reproducible_and_records_settings(monkeypatch):
     table = pd.DataFrame({"death": [0, 1, 1, 0]})
     monkeypatch.setattr(training, "fit_parameters", lambda frame: {"coefficients": [2., 0., 0., 0.], "shape": 1.})
@@ -66,12 +73,14 @@ def test_bootstrap_is_reproducible_and_records_settings(monkeypatch):
     assert first["training"]["weighted"] is False
     assert validate_model(first) == first
 
+# Ensure fitting requires enough bootstrap replicates and at least one observed death.
 def test_fitting_rejects_too_few_bootstraps_or_no_deaths():
     with pytest.raises(ValueError, match = "30"):
         training.fit_research_model(pd.DataFrame(), bootstrap_samples = 3)
     with pytest.raises(ValueError, match = "observed deaths"):
         training.fit_parameters(pd.DataFrame({"death": [0]}))
 
+# Ensure five-year scoring rejects participants censored before their outcome is known.
 def test_evaluation_rejects_incomplete_five_year_outcomes():
     table = pd.DataFrame({"death": [0], "follow_up_years": [2]})
     with pytest.raises(ValueError, match = "complete five-year"):
@@ -83,6 +92,7 @@ LOCAL_FILES = ["MCQ_G.xpt", "DEMO_G.xpt", "NHANES_2011_2012_MORT_2019_PUBLIC.dat
     "MCQ_H.xpt", "DEMO_H.xpt", "NHANES_2013_2014_MORT_2019_PUBLIC.dat"]
 
 @pytest.mark.skipif(not all((DATA / name).exists() for name in LOCAL_FILES), reason = "Local NHANES research files not downloaded")
+# Check local NHANES cycle cohort sizes, exclusions and death counts against known totals.
 def test_local_cycle_preparation_counts():
     first, report = training.prepare_cycle(*(DATA / name for name in LOCAL_FILES[:3]), "2011-2012")
     second, checking_report = training.prepare_cycle(*(DATA / name for name in LOCAL_FILES[3:]), "2013-2014")

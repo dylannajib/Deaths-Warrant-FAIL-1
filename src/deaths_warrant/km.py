@@ -1,5 +1,6 @@
 from math import isfinite; import pandas as pd
 
+# Count weighted risk sets and deaths at each exit time, allowing delayed entry.
 def event_table(times, events, entry=None, weights=None):
     rows = []
     if entry is None:
@@ -25,6 +26,7 @@ def event_table(times, events, entry=None, weights=None):
         rows.append({"time": t, "at_risk": at_risk, "deaths": deaths})
     return pd.DataFrame(rows)
 
+# Multiply conditional survival probabilities across the weighted event table.
 def kaplan_meier(times, events, entry=None, weights=None):
     table = event_table(times, events, entry, weights=weights)
     survival = 1.0

@@ -4,6 +4,7 @@ from deaths_warrant.estimators import AalenJohansenEstimator
 from deaths_warrant.years_lost import summarise_years
 from deaths_warrant.what_if import remove_cause
 
+# Define CSV input, analysis-window and cause-removal command-line options.
 def build_parser():
     parser = argparse.ArgumentParser(description="Analyse restricted years lived and lost")
     parser.add_argument("input", help = "Path to the standard patient CSV")
@@ -14,6 +15,7 @@ def build_parser():
     parser.add_argument("--remove-cause", help = "Takes a cause label")
     return parser
 
+# Assign stable positive codes to death causes while reserving zero for censoring.
 def encode_causes(table):
     labels = sorted(table["cause"].dropna().unique())
     label_to_code = {}
@@ -22,6 +24,7 @@ def encode_causes(table):
     codes = table["cause"].map(label_to_code).fillna(0).astype(int).tolist()
     return codes, label_to_code
 
+# Validate patient CSV input and emit restricted-years analysis and optional scenario JSON.
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)

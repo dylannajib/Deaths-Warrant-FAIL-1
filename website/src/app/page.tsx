@@ -3,9 +3,12 @@
 import { useState, type ChangeEvent } from "react";
 import { validatePatientReferences, readBundleResources } from "@/lib/fhir";
 import { parseCdaXml, validateCcdTemplates, getCcdPatientRole, readCcdPatientIdentifiers } from "@/lib/ccda";
+import { validatePatientFile } from "@/lib/patient-file";
 
+// Render the local patient-record picker and display reading progress or validation results.
 export default function Home() {
   const [message, setMessage] = useState("No file selected."); const [reading, setReading] = useState(false);
+  // Read a size-checked patient file and report supported CCD declarations or FHIR references.
   async function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const file = event.currentTarget.files?.[0];
     if (!file) {
@@ -13,20 +16,19 @@ export default function Home() {
     }
     setReading(true); setMessage("Reading file...");
     try {
+      const format = validatePatientFile(file);
       const fileText = await file.text();
-      if (file.name.toLowerCase().endsWith(".xml")) {
+      if (format === "xml") {
         const xmlDocument = parseCdaXml(fileText);
         validateCcdTemplates(xmlDocument);
         const patientRole = getCcdPatientRole(xmlDocument);
         readCcdPatientIdentifiers(patientRole);
         setMessage("CCD template declarations recognised. Template versions, patient identity and clinical data not validated.")
-      } else if (file.name.toLowerCase().endsWith(".json")) {
+      } else {
         const value: unknown = JSON.parse(fileText);
         const resources = readBundleResources(value);
         validatePatientReferences(resources);
         setMessage(resources.length + " resources read. Supported patient references checked. Clinical data not validated.");
-      } else {
-        throw new Error ("Select a supported JSON or XML file")
       }
     } catch (error) {
       if (error instanceof SyntaxError) {

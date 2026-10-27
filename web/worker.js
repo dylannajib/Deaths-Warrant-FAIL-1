@@ -1,3 +1,4 @@
+// Load Python and the analysis package in the worker, then serve CSV analysis requests.
 async function initialise() {
     try {
         self.postMessage({type: "loading", message: "Loading Python...", completed: 0});
@@ -44,6 +45,7 @@ async function initialise() {
 
         await pyodide.runPythonAsync(await response.text());
 
+        // Run incoming CSV requests in Python, report results and clear temporary patient globals.
         self.addEventListener("message", async(event) => {
             if (event.data.type === "analyse") {
                 try {

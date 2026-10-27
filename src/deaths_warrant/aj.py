@@ -1,5 +1,6 @@
 from deaths_warrant.km import event_table; import pandas as pd
 
+# Accumulate weighted cause-specific incidence and overall survival at each exit time.
 def aalen_johansen(times, causes, entry=None, weights=None):
     events = []
     for cause in causes:

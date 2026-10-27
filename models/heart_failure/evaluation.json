@@ -1,5 +1,6 @@
 {
   "modelVersion": "nhanes-hf-weibull-0.1.0",
+  "modelFingerprint": "70bdb66f22627ca190445533a8fa6ae2e66a2d6c12be516afa5b3f1188eecf45",
   "training": {
     "cycle": "2011-2012",
     "questionnaireParticipants": 9364,

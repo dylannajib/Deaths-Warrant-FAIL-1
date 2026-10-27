@@ -5,6 +5,7 @@ from lifelines.utils import concordance_index
 from deaths_warrant.km import kaplan_meier
 from deaths_warrant.years_lost import summarise_years
 
+# Print cohort completeness and follow-up counts, then return mortality-eligible heart-failure records.
 def audit_cycle(cycle, medical_path, demo_path, mortality_path):
     print("Cycle:", cycle)
     medical_conditions = pd.read_sas(medical_path, format = "xport")

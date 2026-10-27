@@ -6,6 +6,7 @@ import json
 
 from deaths_warrant.cli import main
 
+# Run the CLI on browser CSV text and return either its summary or a readable error as JSON.
 def analyse_csv(csv_text, start, end, remove_cause = None):
     output = StringIO()
     errors = StringIO()

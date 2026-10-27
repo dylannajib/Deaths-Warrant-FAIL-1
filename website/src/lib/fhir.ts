@@ -1,7 +1,9 @@
+// Narrow unknown JSON values to non-null objects while excluding arrays.
 export function isJsonObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+// Recognise a JSON object that declares the FHIR Bundle resource type.
 export function isFhirBundle(value: unknown): boolean {
   return (
     typeof value === "object" &&
@@ -11,6 +13,7 @@ export function isFhirBundle(value: unknown): boolean {
   );
 }
 
+// Require a FHIR Bundle and collect entries with nonblank resource types.
 export function readBundleResources(value: unknown): Record<string, unknown> [] {
   if (!isJsonObject(value)) {
     throw new Error("File must contain a JSON object.")
@@ -42,6 +45,7 @@ export function readBundleResources(value: unknown): Record<string, unknown> [] 
   return (resources)
 }
 
+// Require exactly one Patient resource and return it for identity checks.
 export function getSinglePatient(resources: Record<string, unknown>[]): Record<string, unknown> {
   const patients = resources.filter(
     resource => resource.resourceType === "Patient"
@@ -55,6 +59,7 @@ export function getSinglePatient(resources: Record<string, unknown>[]): Record<s
   return patients[0]
 }
 
+// Build the local Patient/id reference from a nonblank patient resource ID.
 function getPatientReference(patient: Record<string, unknown>): string {
   if (typeof patient.id !== "string") {
     throw new Error ("Patient ID resource must have a non-blank string.")
@@ -65,6 +70,7 @@ function getPatientReference(patient: Record<string, unknown>): string {
   return ("Patient/" + patient.id)
 }
 
+// Require supported clinical resources to reference the bundle's single patient.
 export function validatePatientReferences(
   resources: Record<string, unknown>[]
 ): void {
