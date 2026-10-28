@@ -7,6 +7,7 @@ __pycache__/
 
 # Data: Never commits it
 data/
+/tests/fixtures/cardiovascular/manual/real/
 *.csv
 *.dat
 *.xpt

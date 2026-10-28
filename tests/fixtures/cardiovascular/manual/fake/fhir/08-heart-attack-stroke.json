@@ -1,0 +1,286 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "id": "synthetic-manual-08-heart-attack-stroke",
+        "birthDate": "1951-01-01",
+        "gender": "male"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "RIDAGEYR"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 75,
+        "id": "synthetic-RIDAGEYR"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "RIAGENDR"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1,
+        "id": "synthetic-RIAGENDR"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160B"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2,
+        "id": "synthetic-MCQ160B"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160C"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2,
+        "id": "synthetic-MCQ160C"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160D"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2,
+        "id": "synthetic-MCQ160D"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160E"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1,
+        "id": "synthetic-MCQ160E"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "MCQ160F"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1,
+        "id": "synthetic-MCQ160F"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "DIQ010"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 2,
+        "id": "synthetic-DIQ010"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "SMQ020"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 1,
+        "id": "synthetic-SMQ020"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:deaths-warrant:nhanes-questionnaire:v1",
+              "code": "SMQ040"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueInteger": 3,
+        "id": "synthetic-SMQ040"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "39156-5"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 25,
+          "system": "http://unitsofmeasure.org",
+          "code": "kg/m2"
+        },
+        "id": "synthetic-39156-5"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 140,
+          "system": "http://unitsofmeasure.org",
+          "code": "mm[Hg]"
+        },
+        "id": "synthetic-8480-6"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "subject": {
+          "reference": "Patient/synthetic-manual-08-heart-attack-stroke"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "2160-0"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-01-01",
+        "valueQuantity": {
+          "value": 1.8,
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "id": "synthetic-2160-0"
+      }
+    }
+  ]
+}

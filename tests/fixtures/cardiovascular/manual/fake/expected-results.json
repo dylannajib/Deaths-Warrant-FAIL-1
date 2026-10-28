@@ -1,0 +1,527 @@
+{
+  "dataKind": "Entirely fictional, manually constructed software test examples",
+  "asOf": "2026-01-01",
+  "modelSha256": "7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141",
+  "cases": [
+    {
+      "id": "01-heart-failure",
+      "description": "Heart failure only",
+      "smoking": "never",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 40,
+        "recordedSex": 2,
+        "heartFailure": true,
+        "coronaryHeartDisease": false,
+        "angina": false,
+        "previousHeartAttack": false,
+        "previousStroke": false,
+        "diabetes": false,
+        "currentSmoker": false,
+        "bmi": 22,
+        "systolicBloodPressure": 110,
+        "creatinine": 0.7
+      },
+      "fhir": "fhir/01-heart-failure.json",
+      "ccda": "ccda/01-heart-failure.xml",
+      "expectedDisplayedYears": "50.2",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 50.216637300277156,
+        "survivalByYear": {
+          "1": 0.9978130335028541,
+          "3": 0.9883973601254249,
+          "5": 0.9749093632367771
+        },
+        "meanUncertainty": {
+          "lower": 35.72483429356808,
+          "upper": 78.3319516522701,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "02-coronary-heart-disease",
+      "description": "Coronary heart disease only",
+      "smoking": "former",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 45,
+        "recordedSex": 1,
+        "heartFailure": false,
+        "coronaryHeartDisease": true,
+        "angina": false,
+        "previousHeartAttack": false,
+        "previousStroke": false,
+        "diabetes": false,
+        "currentSmoker": false,
+        "bmi": 26,
+        "systolicBloodPressure": 125,
+        "creatinine": 0.9
+      },
+      "fhir": "fhir/02-coronary-heart-disease.json",
+      "ccda": "ccda/02-coronary-heart-disease.xml",
+      "expectedDisplayedYears": "54.1",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 54.13941103093421,
+        "survivalByYear": {
+          "1": 0.9980495469132514,
+          "3": 0.989646848371866,
+          "5": 0.9775948143798371
+        },
+        "meanUncertainty": {
+          "lower": 38.80036066198723,
+          "upper": 77.45874385392185,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "03-angina",
+      "description": "Angina only",
+      "smoking": "never",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 50,
+        "recordedSex": 2,
+        "heartFailure": false,
+        "coronaryHeartDisease": false,
+        "angina": true,
+        "previousHeartAttack": false,
+        "previousStroke": false,
+        "diabetes": false,
+        "currentSmoker": false,
+        "bmi": 24,
+        "systolicBloodPressure": 118,
+        "creatinine": 0.8
+      },
+      "fhir": "fhir/03-angina.json",
+      "ccda": "ccda/03-angina.xml",
+      "expectedDisplayedYears": "53.4",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 53.365978133584186,
+        "survivalByYear": {
+          "1": 0.9980063682712322,
+          "3": 0.9894186421172105,
+          "5": 0.9771040460283361
+        },
+        "meanUncertainty": {
+          "lower": 37.739035356661354,
+          "upper": 86.84447709781743,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "04-previous-heart-attack",
+      "description": "Previous heart attack",
+      "smoking": "daily",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 55,
+        "recordedSex": 1,
+        "heartFailure": false,
+        "coronaryHeartDisease": false,
+        "angina": false,
+        "previousHeartAttack": true,
+        "previousStroke": false,
+        "diabetes": false,
+        "currentSmoker": true,
+        "bmi": 29,
+        "systolicBloodPressure": 145,
+        "creatinine": 1.2
+      },
+      "fhir": "fhir/04-previous-heart-attack.json",
+      "ccda": "ccda/04-previous-heart-attack.xml",
+      "expectedDisplayedYears": "24.9",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 24.933692226387905,
+        "survivalByYear": {
+          "1": 0.9936599075835516,
+          "3": 0.9666645915399614,
+          "5": 0.9288384982972127
+        },
+        "meanUncertainty": {
+          "lower": 18.70275890138897,
+          "upper": 32.946114807789755,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "05-previous-stroke",
+      "description": "Previous stroke",
+      "smoking": "former",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 60,
+        "recordedSex": 2,
+        "heartFailure": false,
+        "coronaryHeartDisease": false,
+        "angina": false,
+        "previousHeartAttack": false,
+        "previousStroke": true,
+        "diabetes": false,
+        "currentSmoker": false,
+        "bmi": 31,
+        "systolicBloodPressure": 135,
+        "creatinine": 1.0
+      },
+      "fhir": "fhir/05-previous-stroke.json",
+      "ccda": "ccda/05-previous-stroke.xml",
+      "expectedDisplayedYears": "29.4",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 29.438979391200682,
+        "survivalByYear": {
+          "1": 0.9950736732301751,
+          "3": 0.9740186073714715,
+          "5": 0.9442931692430587
+        },
+        "meanUncertainty": {
+          "lower": 24.067832332708203,
+          "upper": 39.57419081544122,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "06-heart-failure-chd-diabetes",
+      "description": "Heart failure + coronary heart disease + diabetes",
+      "smoking": "daily",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 65,
+        "recordedSex": 1,
+        "heartFailure": true,
+        "coronaryHeartDisease": true,
+        "angina": false,
+        "previousHeartAttack": false,
+        "previousStroke": false,
+        "diabetes": true,
+        "currentSmoker": true,
+        "bmi": 33,
+        "systolicBloodPressure": 155,
+        "creatinine": 1.6
+      },
+      "fhir": "fhir/06-heart-failure-chd-diabetes.json",
+      "ccda": "ccda/06-heart-failure-chd-diabetes.xml",
+      "expectedDisplayedYears": "9.4",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 9.378196918485763,
+        "survivalByYear": {
+          "1": 0.972187732608347,
+          "3": 0.8604024320454952,
+          "5": 0.7208123872040101
+        },
+        "meanUncertainty": {
+          "lower": 6.482274122937717,
+          "upper": 12.896042363433404,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "07-chd-angina-diabetes",
+      "description": "Coronary heart disease + angina + diabetes",
+      "smoking": "never",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 70,
+        "recordedSex": 2,
+        "heartFailure": false,
+        "coronaryHeartDisease": true,
+        "angina": true,
+        "previousHeartAttack": false,
+        "previousStroke": false,
+        "diabetes": true,
+        "currentSmoker": false,
+        "bmi": 28,
+        "systolicBloodPressure": 150,
+        "creatinine": 1.3
+      },
+      "fhir": "fhir/07-chd-angina-diabetes.json",
+      "ccda": "ccda/07-chd-angina-diabetes.xml",
+      "expectedDisplayedYears": "16.9",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 16.880198274322602,
+        "survivalByYear": {
+          "1": 0.9885441483722954,
+          "3": 0.9404297418944116,
+          "5": 0.8748266346308675
+        },
+        "meanUncertainty": {
+          "lower": 12.538268394987815,
+          "upper": 23.562499128008024,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "08-heart-attack-stroke",
+      "description": "Previous heart attack + stroke",
+      "smoking": "former",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 75,
+        "recordedSex": 1,
+        "heartFailure": false,
+        "coronaryHeartDisease": false,
+        "angina": false,
+        "previousHeartAttack": true,
+        "previousStroke": true,
+        "diabetes": false,
+        "currentSmoker": false,
+        "bmi": 25,
+        "systolicBloodPressure": 140,
+        "creatinine": 1.8
+      },
+      "fhir": "fhir/08-heart-attack-stroke.json",
+      "ccda": "ccda/08-heart-attack-stroke.xml",
+      "expectedDisplayedYears": "9.7",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 9.698416094345134,
+        "survivalByYear": {
+          "1": 0.9735558709023354,
+          "3": 0.8668764812999639,
+          "5": 0.7326740678570505
+        },
+        "meanUncertainty": {
+          "lower": 7.615358444335836,
+          "upper": 12.003331597308186,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "09-multiple-histories",
+      "description": "All five cardiovascular histories + diabetes",
+      "smoking": "daily",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 79,
+        "recordedSex": 2,
+        "heartFailure": true,
+        "coronaryHeartDisease": true,
+        "angina": true,
+        "previousHeartAttack": true,
+        "previousStroke": true,
+        "diabetes": true,
+        "currentSmoker": true,
+        "bmi": 35,
+        "systolicBloodPressure": 160,
+        "creatinine": 2.2
+      },
+      "fhir": "fhir/09-multiple-histories.json",
+      "ccda": "ccda/09-multiple-histories.xml",
+      "expectedDisplayedYears": "3.2",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 3.1770567656068387,
+        "survivalByYear": {
+          "1": 0.8635575902053032,
+          "3": 0.45750762669343936,
+          "5": 0.18220760318802798
+        },
+        "meanUncertainty": {
+          "lower": 2.122908431921503,
+          "upper": 4.307195462131998,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    },
+    {
+      "id": "10-heart-failure-stroke",
+      "description": "Heart failure + previous stroke",
+      "smoking": "some-days",
+      "profile": {
+        "asOf": "2026-01-01",
+        "ageYears": 68,
+        "recordedSex": 1,
+        "heartFailure": true,
+        "coronaryHeartDisease": false,
+        "angina": false,
+        "previousHeartAttack": false,
+        "previousStroke": true,
+        "diabetes": false,
+        "currentSmoker": true,
+        "bmi": 20,
+        "systolicBloodPressure": 105,
+        "creatinine": 2.0
+      },
+      "fhir": "fhir/10-heart-failure-stroke.json",
+      "ccda": "ccda/10-heart-failure-stroke.xml",
+      "expectedDisplayedYears": "6.0",
+      "expectedReport": {
+        "modelVersion": "nhanes-cardiovascular-weibull-0.1.0",
+        "status": "experimental",
+        "clinicallyValidated": false,
+        "asOf": "2026-01-01",
+        "remainingYears": 5.962833657771509,
+        "survivalByYear": {
+          "1": 0.9453278380193796,
+          "3": 0.7410393825635928,
+          "5": 0.5207127730674592
+        },
+        "meanUncertainty": {
+          "lower": 4.395327862370833,
+          "upper": 7.628245941994338,
+          "level": 0.95,
+          "samples": 100,
+          "method": "ordinary_bootstrap_percentile",
+          "meaning": "Uncertainty in the fitted mean, not an individual's remaining-life range; excludes survey design and extrapolation uncertainty."
+        },
+        "supportsTreatmentEffects": false,
+        "supportsConditionAttribution": false,
+        "warnings": [
+          "Unvalidated research estimate; not suitable for clinical decisions or end-of-life planning.",
+          "Mean remaining years extrapolate beyond observed follow-up using a Weibull assumption.",
+          "Historical survey histories and examination measurements are not validated equivalents of clinical-record inputs.",
+          "Unweighted complete-case model; selection bias and survey-design uncertainty are not resolved.",
+          "Does not estimate treatment effects or years attributable to individual conditions."
+        ]
+      }
+    }
+  ]
+}

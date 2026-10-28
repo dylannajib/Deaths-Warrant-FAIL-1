@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <templateId root="2.16.840.1.113883.10.20.22.1.1"/>
+  <templateId root="2.16.840.1.113883.10.20.22.1.2"/>
+  <effectiveTime value="20260101"/>
+  <recordTarget><patientRole><id root="2.25.302768291377756359126047998875640721002" extension="synthetic-manual-06-heart-failure-chd-diabetes"/><patient><birthTime value="19610101"/><administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/></patient></patientRole></recordTarget>
+  <component><structuredBody><component><section>
+    <code code="cardiovascular-snapshot" codeSystem="2.25.302768291377756359126047998875640721001"/>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="RIDAGEYR" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="65"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="RIAGENDR" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="MCQ160B" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="MCQ160C" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="MCQ160D" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="2"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="MCQ160E" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="2"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="MCQ160F" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="2"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="DIQ010" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="SMQ020" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="SMQ040" codeSystem="2.25.302768291377756359126047998875640721001"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="INT" value="1"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="39156-5" codeSystem="2.16.840.1.113883.6.1"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="PQ" value="33" unit="kg/m2"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="8480-6" codeSystem="2.16.840.1.113883.6.1"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="PQ" value="155" unit="mm[Hg]"/></observation></entry>
+      <entry><observation classCode="OBS" moodCode="EVN"><code code="2160-0" codeSystem="2.16.840.1.113883.6.1"/><statusCode code="completed"/><effectiveTime value="20260101"/><value xsi:type="PQ" value="1.6" unit="mg/dL"/></observation></entry>
+  </section></component></structuredBody></component>
+</ClinicalDocument>
