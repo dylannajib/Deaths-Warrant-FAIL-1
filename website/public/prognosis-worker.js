@@ -1,11 +1,18 @@
-const runtime = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/";
+const runtime = new URL("vendor/pyodide/0.27.7/", self.location.href).href;
 let python = null, busy = false;
 
 // Fetch application code or coefficients and reject failed HTTP responses.
 async function readAsset(name) {
-  const response = await fetch(new URL("prognosis/" + name, self.location.href), { cache: "no-store" });
+  const response = await fetch(new URL("prognosis/" + name, self.location.href),
+    { cache: name === "assets.json" ? "no-store" : "default" });
   if (!response.ok) throw new Error("Could not load a required prognosis asset.");
-  return response.text();
+  const text = await response.text();
+  if (name !== "assets.json") {
+    const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    const actual = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
+    if (actual !== name.split(".")[1]) throw new Error("Prognosis asset checksum mismatch.");
+  }
+  return text;
 }
 
 // Load Python once and keep only the frozen model as a persistent Python global.
@@ -15,7 +22,10 @@ async function initialise() {
     importScripts(runtime + "pyodide.js");
     python = await loadPyodide({ indexURL: runtime });
     self.postMessage({ type: "loading", message: "Loading the prognosis model..." });
-    const [source, model] = await Promise.all([readAsset("engine.py"), readAsset("model.json")]);
+    const assets = JSON.parse(await readAsset("assets.json"));
+    if (assets.schemaVersion !== 1 || !/^engine\.[a-f0-9]{64}\.py$/.test(assets.engine) ||
+      !/^model\.[a-f0-9]{64}\.json$/.test(assets.model)) throw new Error("Unsupported prognosis asset manifest.");
+    const [source, model] = await Promise.all([readAsset(assets.engine), readAsset(assets.model)]);
     await python.runPythonAsync(source);
     python.globals.set("browser_model_text", model);
     try {

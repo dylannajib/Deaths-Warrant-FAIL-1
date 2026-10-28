@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-10-28T03:44:49.108Z",
+  "scope": "Node Pyodide engine benchmark; not browser performance",
+  "environment": {
+    "node": "v22.22.1",
+    "pyodide": "0.27.7",
+    "platform": "linux",
+    "release": "6.18.54.1-microsoft-standard-WSL2",
+    "arch": "x64"
+  },
+  "inputs": {
+    "engine": {
+      "path": "src/deaths_warrant/cardiovascular_prognosis.py",
+      "bytes": 7915,
+      "sha256": "fa5d5e911f0ba8627589e17df48bb7b1153b7c2afe7e9fb3de951a182377a936"
+    },
+    "model": {
+      "path": "models/cardiovascular/model.json",
+      "bytes": 48398,
+      "sha256": "7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141"
+    },
+    "profile": {
+      "path": "tests/fixtures/cardiovascular/patient-profile.json",
+      "bytes": 313,
+      "sha256": "426ab4505e123878770e2b129d40b291c850032555aed6f0252530f5af24d15f"
+    },
+    "fhir": {
+      "path": "tests/fixtures/cardiovascular/fhir.json",
+      "bytes": 6317,
+      "sha256": "fa11ee0f4e92dce65da9ad4d3c80efafbb0b82b672cd3220df4538f5c7144568"
+    }
+  },
+  "cold": {
+    "runtimeMs": 2313.313406,
+    "engineModelMs": 67.10776699999997,
+    "readyMs": 2380.421173,
+    "firstPrediction": {
+      "count": 1,
+      "totalMs": 6.938476999999693,
+      "meanMs": 6.938476999999693,
+      "minMs": 6.938476999999693,
+      "p50Ms": 6.938476999999693,
+      "p95Ms": 6.938476999999693,
+      "maxMs": 6.938476999999693
+    }
+  },
+  "warmPredictions": {
+    "count": 100,
+    "totalMs": 256.69047799999953,
+    "meanMs": 2.5669047799999953,
+    "minMs": 2.0652610000001914,
+    "p50Ms": 2.359729000000243,
+    "p95Ms": 3.5716040000002067,
+    "maxMs": 4.300132999999732
+  },
+  "boundaries": {
+    "supportedProfiles": 8,
+    "allEstimatesFinite": true,
+    "totalMs": 22.199515000000247
+  },
+  "recovery": {
+    "rejectedProfiles": 6,
+    "successfulRecoveries": 6,
+    "totalMs": 28.21562800000038
+  },
+  "successfulPredictions": 115,
+  "allEstimatesFinite": true,
+  "fhir": {
+    "scope": "JSON.parse plus existing strict single-patient reader; not cohort support",
+    "fixtureBytes": 6317,
+    "fixtureEntries": 14,
+    "fixture": {
+      "count": 100,
+      "totalMs": 23.213406999999734,
+      "meanMs": 0.23213406999999733,
+      "minMs": 0.14624800000001414,
+      "p50Ms": 0.18079900000020643,
+      "p95Ms": 0.347964999999931,
+      "maxMs": 3.240372999999636
+    },
+    "duplicateEntries": 1001,
+    "duplicateBytes": 254250,
+    "duplicateRejection": {
+      "count": 100,
+      "totalMs": 404.0112420000005,
+      "meanMs": 4.040112420000005,
+      "minMs": 2.9182700000001205,
+      "p50Ms": 3.825242999999773,
+      "p95Ms": 6.11268999999993,
+      "maxMs": 10.761359999999968
+    },
+    "validFixtureRecovery": true
+  },
+  "staticRequests": {
+    "scope": "Local emulator static-asset proof only; not production users or capacity",
+    "asset": "http://127.0.0.1:8004/prognosis/model.7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141.json",
+    "concurrency": 100,
+    "requests": 100,
+    "deadlineMs": 15000,
+    "wallMs": 832.8027339999999,
+    "codes": {
+      "200": 100
+    },
+    "allSuccessful": true,
+    "bodyBytes": 4839800,
+    "latency": {
+      "count": 100,
+      "totalMs": 64964.068345000014,
+      "meanMs": 649.6406834500001,
+      "minMs": 69.20787199999995,
+      "p50Ms": 649.5213530000001,
+      "p95Ms": 809.5574619999998,
+      "maxMs": 810.120457
+    }
+  }
+}

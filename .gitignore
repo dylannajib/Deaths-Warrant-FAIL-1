@@ -15,3 +15,7 @@ data/
 explore.py
 # Generated browser copies of the frozen model and inference engine.
 /website/public/prognosis/
+
+# Runtime assets are reproduced from the locked npm package during builds.
+/website/public/vendor/pyodide/
+/website/.wrangler/

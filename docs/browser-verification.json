@@ -1,0 +1,33 @@
+{
+  "measuredDate": "2026-10-28",
+  "scope": "Local Cloudflare Pages emulator, Chromium in T3 Code; no public hosting or mobile simulation",
+  "origin": "http://localhost:8004",
+  "worker": {
+    "freshContextStartupMs": 4959.0999999940395,
+    "calculations": 100,
+    "meanMs": 5.517999999821186,
+    "p95Ms": 7.9000000059604645,
+    "minMs": 3.899999976158142,
+    "maxMs": 11.800000011920929,
+    "remainingYears": 17.435570518699695
+  },
+  "securityProbes": {
+    "unapprovedInlineScriptBlocked": true,
+    "externalConnectionBlocked": true,
+    "observedViolationDirectives": [
+      "script-src-elem",
+      "connect-src"
+    ]
+  },
+  "syntheticForm": {
+    "resultDisplayed": "17.4",
+    "localStorageEntries": 0,
+    "sessionStorageEntries": 0,
+    "indexedDBDatabases": [],
+    "mainThreadRequestsDuringCalculation": []
+  },
+  "limits": [
+    "Main-document resource timing does not enumerate worker requests.",
+    "No public HTTPS/edge-cache or mobile test has occurred."
+  ]
+}

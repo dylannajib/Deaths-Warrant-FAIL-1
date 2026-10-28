@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated third-party runtime files are checked by hashes, not reformatted or linted.
+    "public/vendor/pyodide/**",
+    ".wrangler/**",
   ]),
 ]);
 

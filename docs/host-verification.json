@@ -1,0 +1,385 @@
+{
+  "measuredAt": "2026-10-28T03:57:33.840Z",
+  "base": "http://127.0.0.1:8004/",
+  "releaseId": "92e83cdeb406d4c6b0683db5ad403a41da005e5c253b6a135cf62f492a945d04",
+  "filesChecked": 53,
+  "headersPassed": true,
+  "exactContentPassed": true,
+  "etagStatus": 304,
+  "notFoundStatus": 404,
+  "wireBytes": 6259620,
+  "scope": "Local HTTP verification only; public HTTPS and edge behaviour require post-deployment verification.",
+  "records": [
+    {
+      "file": "__next.__PAGE__.txt",
+      "decodedBytes": 2576,
+      "wireBytes": 1106,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "__next._full.txt",
+      "decodedBytes": 3340,
+      "wireBytes": 1283,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "__next._tree.txt",
+      "decodedBytes": 392,
+      "wireBytes": 261,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "_next/static/chunks/0cz1d0mv5g_q7.js",
+      "decodedBytes": 112594,
+      "wireBytes": 39627,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/0umf92h1sb77c.js",
+      "decodedBytes": 13822,
+      "wireBytes": 3514,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/1-9dyrc39prri.js",
+      "decodedBytes": 168822,
+      "wireBytes": 46606,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/1397pleky-pxy.js",
+      "decodedBytes": 22072,
+      "wireBytes": 7488,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/1x6obpmlu1_c2.js",
+      "decodedBytes": 5361,
+      "wireBytes": 1975,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/2n5qeheznvl4u.js",
+      "decodedBytes": 7820,
+      "wireBytes": 3307,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/2r4s4h5xul1n-.js",
+      "decodedBytes": 28739,
+      "wireBytes": 7624,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/3eubc84y_zav4.css",
+      "decodedBytes": 4207,
+      "wireBytes": 1234,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/3wbm-994r45kr.js",
+      "decodedBytes": 229820,
+      "wireBytes": 71969,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+      "decodedBytes": 10030,
+      "wireBytes": 3940,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/07935285219a259d-s.1qq4vpdcun5oj.woff2",
+      "decodedBytes": 14900,
+      "wireBytes": 14900,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/07a39a8a4660cc7c-s.p.0r6juujl39pe6.woff2",
+      "decodedBytes": 23108,
+      "wireBytes": 23108,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/2a04751c893bf294-s.1rgnod-3esatf.woff2",
+      "decodedBytes": 14712,
+      "wireBytes": 14712,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/2bb852295097cd96-s.2dbetqa9o8jxf.woff2",
+      "decodedBytes": 5892,
+      "wireBytes": 5892,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/4f6667dd39116621-s.3p2_lha1f2xer.woff2",
+      "decodedBytes": 7252,
+      "wireBytes": 7252,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/605ce01b664af129-s.p.0wgildi0cnwt9.woff2",
+      "decodedBytes": 29288,
+      "wireBytes": 29288,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/6e342921ee4dcd9d-s.2tuy5pz7dlieh.woff2",
+      "decodedBytes": 12872,
+      "wireBytes": 12872,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/77814b00d5ca94a4-s.21jp631_3pja2.woff2",
+      "decodedBytes": 16540,
+      "wireBytes": 16540,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/9eb5a876700c0028-s.1uyisp29ctx0d.woff2",
+      "decodedBytes": 7728,
+      "wireBytes": 7728,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/b0c6b664fd57c2c6-s.31988l_ccedte.woff2",
+      "decodedBytes": 6204,
+      "wireBytes": 6204,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/f58031ded4338640-s.390ncx5urfkfu.woff2",
+      "decodedBytes": 7968,
+      "wireBytes": 7968,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/media/favicon.117ezoe8m31dk.ico",
+      "decodedBytes": 15086,
+      "wireBytes": 2541,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/QPxKfNuZ21t576lf2Ky_r/_buildManifest.js",
+      "decodedBytes": 219,
+      "wireBytes": 154,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/QPxKfNuZ21t576lf2Ky_r/_clientMiddlewareManifest.js",
+      "decodedBytes": 96,
+      "wireBytes": 66,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_next/static/QPxKfNuZ21t576lf2Ky_r/_ssgManifest.js",
+      "decodedBytes": 80,
+      "wireBytes": 64,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "_not-found/__next._full.txt",
+      "decodedBytes": 3440,
+      "wireBytes": 1120,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "_not-found/__next._not-found.__PAGE__.txt",
+      "decodedBytes": 2704,
+      "wireBytes": 1030,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "_not-found/__next._tree.txt",
+      "decodedBytes": 218,
+      "wireBytes": 183,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "_not-found.txt",
+      "decodedBytes": 3440,
+      "wireBytes": 1120,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "favicon.ico",
+      "decodedBytes": 15086,
+      "wireBytes": 2541,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "file.svg",
+      "decodedBytes": 391,
+      "wireBytes": 264,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "globe.svg",
+      "decodedBytes": 1035,
+      "wireBytes": 536,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "index.html",
+      "decodedBytes": 6544,
+      "wireBytes": 2184,
+      "encoding": "gzip",
+      "cache": "no-cache"
+    },
+    {
+      "file": "index.txt",
+      "decodedBytes": 3340,
+      "wireBytes": 1283,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "next.svg",
+      "decodedBytes": 1375,
+      "wireBytes": 704,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "prognosis/assets.json",
+      "decodedBytes": 205,
+      "wireBytes": 174,
+      "encoding": "gzip",
+      "cache": "no-cache"
+    },
+    {
+      "file": "prognosis/engine.fa5d5e911f0ba8627589e17df48bb7b1153b7c2afe7e9fb3de951a182377a936.py",
+      "decodedBytes": 7915,
+      "wireBytes": 7915,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "prognosis/model.7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141.json",
+      "decodedBytes": 48398,
+      "wireBytes": 15441,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "prognosis-worker.js",
+      "decodedBytes": 3980,
+      "wireBytes": 1553,
+      "encoding": "gzip",
+      "cache": "no-cache"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/EMSCRIPTEN-LICENSE.txt",
+      "decodedBytes": 5093,
+      "wireBytes": 1592,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/PYODIDE-LICENSE.txt",
+      "decodedBytes": 16725,
+      "wireBytes": 5293,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/pyodide-lock.json",
+      "decodedBytes": 112205,
+      "wireBytes": 25238,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/pyodide.asm.js",
+      "decodedBytes": 1255688,
+      "wireBytes": 237121,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/pyodide.asm.wasm",
+      "decodedBytes": 10105545,
+      "wireBytes": 3243286,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/pyodide.js",
+      "decodedBytes": 14913,
+      "wireBytes": 6007,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/python_stdlib.zip",
+      "decodedBytes": 2360737,
+      "wireBytes": 2360737,
+      "encoding": "identity",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/PYTHON-LICENSE.txt",
+      "decodedBytes": 13936,
+      "wireBytes": 4387,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vendor/pyodide/0.27.7/sources.json",
+      "decodedBytes": 637,
+      "wireBytes": 333,
+      "encoding": "gzip",
+      "cache": "public, max-age=31536000, immutable"
+    },
+    {
+      "file": "vercel.svg",
+      "decodedBytes": 128,
+      "wireBytes": 129,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    },
+    {
+      "file": "window.svg",
+      "decodedBytes": 385,
+      "wireBytes": 226,
+      "encoding": "gzip",
+      "cache": "public, max-age=0, must-revalidate"
+    }
+  ]
+}

@@ -43,3 +43,12 @@ jobs:
         run: npm run lint
       - name: Build static website
         run: npm run build
+      - name: Verify deployment artefact
+        run: npm run check:release
+      - name: Retain the checked static site for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: deaths-warrant-static-site
+          path: website/out/
+          if-no-files-found: error
+          retention-days: 7

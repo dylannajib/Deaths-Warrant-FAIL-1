@@ -9,9 +9,19 @@ The product goal is a remaining-years estimate from a patient's medical records.
 | 11.2b — Clinical-field extraction | **Prototype subset complete.** Strict broad FHIR/CCD questionnaire snapshot readers return the same complete profile; ordinary EHR exports are not generally supported. See `cardiovascular_record_contract.md`. Existing HF readers are retained. |
 | 11.3 — Prognosis calculations | **Research engine complete.** Versioned broad artifact, standard-library inference, fitted-mean bootstrap interval, support checks and parity tests implemented. Research acknowledgement remains required; no treatment or individual-condition attribution is claimed. |
 | 11.4 — Browser calculation/results | **Prototype integration complete.** Supported snapshots prefill locked imported values; users complete missing fields and confirm the assessment. A Web Worker runs the existing Python engine through Pyodide and displays mean remaining years, fitted-mean uncertainty and survival checks. Retry, timeout, clear and stale-result handling are implemented. |
-| 11.5 — Privacy, performance and builds | Pending final milestone checks. Python/frontend automated checks are in CI; no final browser privacy audit, benchmark or deployment has been performed. |
+| 11.5 — Privacy, performance and builds | **Implementation approved and locally verified.** Self-hosted checked runtime, restrictive CSP/security headers, content-addressed engine/model, cache rules, release/host checks and synthetic benchmarks are implemented. Clean-install checks and the real browser/local Pages runtime pass. Publication and public HTTPS/edge/mobile acceptance remain outstanding. See `deployment.md`, `performance.md` and `browser_runtime.md`. |
 
 Milestone 12 remains reserved for user-directed visual polishing.
+
+## Release preparation verification — 28 October 2026
+
+- Python: 206 passed. Frontend: 170 passed. TypeScript, lint, static build and release checks passed, including a clean installation in a disposable copy with no previous build cache.
+- Cloudflare local Pages runtime served the exact checked files with the expected CSP, security/cache headers, WebAssembly MIME type, gzip bodies, ETag 304 and 404 behaviour. `host-verification.json` records the tested local release.
+- The real browser blocked unapproved inline JavaScript and an external connection. The existing frozen Python model still calculated the same synthetic output. Complete FHIR/CCD, missing inputs, range error/recovery, malformed XML and Clear checks passed under that policy.
+- Fresh browser worker readiness: 4.96 s locally. One hundred sequential calculations: 5.52 ms mean, 7.90 ms p95. One hundred concurrent static model requests all returned 200. These are local desktop measurements, not mobile/public capacity tests.
+- Build-time source runtime checks are repeated against exported runtime bytes during release validation. Regression tests reject missing or modified runtime files even if release metadata is regenerated. The prognosis model was not refitted or changed.
+- CI retains the checked public static artifact for review and does not auto-deploy. No hosting account, paid service, commit, push or public deployment was created by this preparation task.
+- Public HTTPS redirects, HSTS over HTTPS, edge compression/cache behaviour and mobile observations must be checked after an approved deployment. Instructions and rollback steps are in `deployment.md`.
 
 ## Browser integration verification — 27 October 2026
 
