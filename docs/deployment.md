@@ -1,6 +1,14 @@
 # Static deployment and approval
 
-The prepared target is Cloudflare Pages with no Functions, accounts, database, analytics or patient upload endpoint. Nothing has been published. The application is a cardiovascular research prototype; this deployment preparation does not establish clinical suitability.
+The approved static application is published at https://deaths-warrant.pages.dev/ on Cloudflare Pages, with no Functions, application user accounts, database, analytics or patient upload endpoint. The application is a cardiovascular research prototype; publication does not establish clinical suitability.
+
+## Current deployment
+
+Published 28 October 2026 using deployment `34dcc7a4`, from approved code checkpoint `0db6aa0`. Release ID: `92e83cdeb406d4c6b0683db5ad403a41da005e5c253b6a135cf62f492a945d04`. The immutable deployment URL is https://34dcc7a4.deaths-warrant.pages.dev/.
+
+The public host passed byte-for-byte and security/cache/compression checks, including HTTP-to-HTTPS redirection. Desktop and 375-pixel Chromium browser tests passed with synthetic records. Public reports are `public-host-verification.json`, `public-browser-verification.json` and `public-performance-results.json`. Mobile testing used desktop emulation; physical-device coverage remains unmeasured.
+
+Deployment uses the local CLI. GitHub pushes do not automatically publish changes. Cloudflare OAuth credentials are held outside the repository. No API token was added to application code or browser assets. No custom bot challenge or application rate limiter was configured; the site serves static files and has no calculation API. Review host abuse controls if traffic warrants them or before adding endpoints.
 
 ## Build and inspect
 
@@ -52,7 +60,7 @@ npm run check:release
 npx --no-install wrangler pages deploy out --project-name deaths-warrant
 ```
 
-These commands are instructions, not actions already taken. The project name may need adjusting for the account. No API token belongs in source control or chat. The free `pages.dev` address avoids a domain purchase; custom domains may have registration costs. There is no paid Python compute component.
+The initial publication used this manual flow with the `deaths-warrant` project. Future releases require rebuilding and repeating release checks before deployment. No API token belongs in source control or chat. The free `pages.dev` address avoids a domain purchase; custom domains may have registration costs. There is no paid Python compute component.
 
 Do not enable Web Analytics, Zaraz, Rocket Loader, email obfuscation, HTML rewriting, injected scripts or additional Functions without reviewing privacy and CSP consequences. Deploy the whole `out/` atomically. Preserve the previous approved Pages deployment for rollback; do not manually overwrite files under immutable URLs. A dependency change must get a new versioned path and checked manifest.
 

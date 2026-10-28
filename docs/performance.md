@@ -40,4 +40,12 @@ The host verifier checked 53 served files against the release, plus ETag 304 and
 
 Security headers, worker readiness, complete FHIR/CCD calculations, missing answers, range-error recovery, malformed XML and Clear were also checked in the real browser. New inline scripts and external connections were deliberately probed and blocked. The two expected CSP violations were test evidence, not application failures.
 
-Remaining release acceptance: after publication approval, repeat the hosted checks over public HTTPS and test a typical mobile connection/device. The local results are a baseline, not a latency guarantee or completed public load test.
+## Public release observations
+
+The approved build was published at https://deaths-warrant.pages.dev/ on 28 October 2026. `public-host-verification.json` records 53 exact-file/security checks, ETag 304 and secured 404 responses. HTTP redirects to HTTPS. The checked files totalled 6,150,931 encoded body bytes on this connection, excluding headers and alternate HTML routes.
+
+All 100 concurrent public model GETs succeeded; batch wall time was 6.28 s and p95 was 5.97 s. See `public-performance-results.json`. This is one static-file batch, not 100 simultaneous browser/Python sessions or a capacity guarantee.
+
+An isolated Chromium context used a 375-by-667 mobile viewport, fourfold CPU slowdown, 200,000 bytes/s page download and 150 ms latency. Model readiness took 33.81 s. Page-level throttling may not cover every worker request. The form/results fitted the viewport, and both record formats, missing inputs, rejection/recovery and Clear passed. Worker-inclusive request capture showed no import/calculation requests and only same-origin software GETs at startup/Clear. See `public-browser-verification.json`.
+
+These mobile observations use desktop emulation. Physical-phone performance, other browser engines and universal startup latency remain unmeasured; none is a release claim.

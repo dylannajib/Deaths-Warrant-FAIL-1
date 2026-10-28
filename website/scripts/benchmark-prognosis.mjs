@@ -91,7 +91,7 @@ export async function measureStatic(baseUrl) {
   }));
   const codes = {};
   for (const result of results) codes[result.code] = (codes[result.code] ?? 0) + 1;
-  return { scope: "Local emulator static-asset proof only; not production users or capacity", asset: url,
+  return { scope: "Static-asset delivery at the specified host; not simultaneous browser sessions or a capacity guarantee", asset: url,
     concurrency: 100, requests: 100, deadlineMs: 15000, wallMs: performance.now() - start, codes,
     allSuccessful: results.every(result => /^2\d\d$/.test(result.code)), bodyBytes: results.reduce((sum, result) => sum + result.bytes, 0),
     latency: summarise(results.map(result => result.ms)) };

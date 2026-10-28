@@ -31,7 +31,7 @@ The five runtime files total 5,727,646 bytes when individually gzip-compressed f
 
 Calculations run on each visitor's device, so there is no per-patient Python server process. A static hosting service delivers the software. One hundred simultaneous visitors is a reasonable target for a distributed static host, but no production capacity or 100-browser load test has been performed.
 
-Cloudflare Pages is a possible free hosting target: its documentation lists static asset requests as free and unlimited, with a 25 MiB per-file limit and 500 builds per month on the free plan. Our largest runtime file is below that per-file limit. Hosting terms and limits can change; custom domains may cost money. No account, deployment or paid service has been created.
+Cloudflare Pages now hosts the approved static site: its documentation lists static asset requests as free and unlimited, with a 25 MiB per-file limit and 500 builds per month on the free plan. Our largest runtime file is below that per-file limit. Hosting terms and limits can change; custom domains may cost money. Publication used the user's authenticated account; no paid service was selected.
 
 Sources checked 28 October 2026:
 
@@ -40,4 +40,4 @@ Sources checked 28 October 2026:
 
 ## Release approval and public checks
 
-Security headers/CSP, benchmarks, cache rules, release validation, local host verification and deployment instructions are complete for review. No production deployment or guarantee of zero vulnerabilities is claimed. Publication requires user approval, followed by the public HTTPS/edge checks and representative mobile observations in `deployment.md`.
+The user approved publication. The release at https://deaths-warrant.pages.dev/ passed public HTTPS/header/cache/compression checks and synthetic browser flows. Runtime requests stayed on the application origin. A 375-pixel desktop Chromium emulation with CPU slowdown passed; physical phones and universal performance remain unmeasured. See `deployment.md` and the public verification reports. These checks do not guarantee zero vulnerabilities.

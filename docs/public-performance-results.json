@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-10-28T08:44:04.173Z",
+  "scope": "Node Pyodide engine benchmark; not browser performance",
+  "environment": {
+    "node": "v22.22.1",
+    "pyodide": "0.27.7",
+    "platform": "linux",
+    "release": "6.18.54.1-microsoft-standard-WSL2",
+    "arch": "x64"
+  },
+  "inputs": {
+    "engine": {
+      "path": "src/deaths_warrant/cardiovascular_prognosis.py",
+      "bytes": 7915,
+      "sha256": "fa5d5e911f0ba8627589e17df48bb7b1153b7c2afe7e9fb3de951a182377a936"
+    },
+    "model": {
+      "path": "models/cardiovascular/model.json",
+      "bytes": 48398,
+      "sha256": "7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141"
+    },
+    "profile": {
+      "path": "tests/fixtures/cardiovascular/patient-profile.json",
+      "bytes": 313,
+      "sha256": "426ab4505e123878770e2b129d40b291c850032555aed6f0252530f5af24d15f"
+    },
+    "fhir": {
+      "path": "tests/fixtures/cardiovascular/fhir.json",
+      "bytes": 6317,
+      "sha256": "fa11ee0f4e92dce65da9ad4d3c80efafbb0b82b672cd3220df4538f5c7144568"
+    }
+  },
+  "cold": {
+    "runtimeMs": 1057.9619229999998,
+    "engineModelMs": 29.02641399999993,
+    "readyMs": 1086.9883369999998,
+    "firstPrediction": {
+      "count": 1,
+      "totalMs": 2.437355000000025,
+      "meanMs": 2.437355000000025,
+      "minMs": 2.437355000000025,
+      "p50Ms": 2.437355000000025,
+      "p95Ms": 2.437355000000025,
+      "maxMs": 2.437355000000025
+    }
+  },
+  "warmPredictions": {
+    "count": 100,
+    "totalMs": 122.67880300000024,
+    "meanMs": 1.2267880300000025,
+    "minMs": 1.0187399999999798,
+    "p50Ms": 1.1958170000000337,
+    "p95Ms": 1.4737780000000384,
+    "maxMs": 2.1068910000001324
+  },
+  "boundaries": {
+    "supportedProfiles": 8,
+    "allEstimatesFinite": true,
+    "totalMs": 9.342053000000078
+  },
+  "recovery": {
+    "rejectedProfiles": 6,
+    "successfulRecoveries": 6,
+    "totalMs": 12.992132000000083
+  },
+  "successfulPredictions": 115,
+  "allEstimatesFinite": true,
+  "fhir": {
+    "scope": "JSON.parse plus existing strict single-patient reader; not cohort support",
+    "fixtureBytes": 6317,
+    "fixtureEntries": 14,
+    "fixture": {
+      "count": 100,
+      "totalMs": 10.650124000000005,
+      "meanMs": 0.10650124000000005,
+      "minMs": 0.060159999999996217,
+      "p50Ms": 0.08827500000006694,
+      "p95Ms": 0.15202700000008917,
+      "maxMs": 1.3160169999998743
+    },
+    "duplicateEntries": 1001,
+    "duplicateBytes": 254250,
+    "duplicateRejection": {
+      "count": 100,
+      "totalMs": 172.53195699999947,
+      "meanMs": 1.7253195699999946,
+      "minMs": 1.4221310000000358,
+      "p50Ms": 1.5075469999999314,
+      "p95Ms": 2.6522350000000188,
+      "maxMs": 5.133730000000014
+    },
+    "validFixtureRecovery": true
+  },
+  "staticRequests": {
+    "scope": "Static-asset delivery at the specified host; not simultaneous browser sessions or a capacity guarantee",
+    "asset": "https://deaths-warrant.pages.dev/prognosis/model.7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141.json",
+    "concurrency": 100,
+    "requests": 100,
+    "deadlineMs": 15000,
+    "wallMs": 6280.728564999999,
+    "codes": {
+      "200": 100
+    },
+    "allSuccessful": true,
+    "bodyBytes": 4839800,
+    "latency": {
+      "count": 100,
+      "totalMs": 352968.42223100003,
+      "meanMs": 3529.68422231,
+      "minMs": 349.41140700000005,
+      "p50Ms": 3497.562083,
+      "p95Ms": 5970.700518,
+      "maxMs": 6239.728416
+    }
+  }
+}

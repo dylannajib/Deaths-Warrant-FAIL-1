@@ -1,0 +1,158 @@
+{
+  "measuredAt": "2026-10-28T08:46:09.616Z",
+  "base": "https://deaths-warrant.pages.dev/",
+  "viewport": {
+    "width": 375,
+    "scrollWidth": 375
+  },
+  "resultLayout": {
+    "width": 375,
+    "scrollWidth": 375
+  },
+  "emulation": {
+    "cpuSlowdown": 4,
+    "downloadBytesPerSecond": 200000,
+    "latencyMs": 150,
+    "physicalMobileDevice": false,
+    "limitation": "Desktop Chromium emulation. Page CDP network throttling may not cover all worker traffic."
+  },
+  "readyMs": 33808.286753,
+  "fhirPassed": true,
+  "ccdPassed": true,
+  "missingFieldPassed": true,
+  "rangeRecoveryPassed": true,
+  "malformedRecoveryPassed": true,
+  "clearPassed": true,
+  "storage": {
+    "local": 0,
+    "session": 0,
+    "indexedDb": []
+  },
+  "errors": [],
+  "startupRequests": [
+    {
+      "url": "https://deaths-warrant.pages.dev/",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/media/07a39a8a4660cc7c-s.p.0r6juujl39pe6.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/media/605ce01b664af129-s.p.0wgildi0cnwt9.woff2",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/3eubc84y_zav4.css",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/1x6obpmlu1_c2.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/2r4s4h5xul1n-.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/3wbm-994r45kr.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/1-9dyrc39prri.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/0umf92h1sb77c.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/2n5qeheznvl4u.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/_next/static/chunks/1397pleky-pxy.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis-worker.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/python_stdlib.zip",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.asm.wasm",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide-lock.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.asm.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/assets.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/engine.fa5d5e911f0ba8627589e17df48bb7b1153b7c2afe7e9fb3de951a182377a936.py",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/model.7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141.json",
+      "method": "GET"
+    }
+  ],
+  "calculationRequests": [],
+  "analysisRequests": [
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis-worker.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/python_stdlib.zip",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.asm.wasm",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide-lock.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/vendor/pyodide/0.27.7/pyodide.asm.js",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/assets.json",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/engine.fa5d5e911f0ba8627589e17df48bb7b1153b7c2afe7e9fb3de951a182377a936.py",
+      "method": "GET"
+    },
+    {
+      "url": "https://deaths-warrant.pages.dev/prognosis/model.7de32a5ca67ab97542a7fd06fc80d1b6bdd305714d03311adc9cd417c1691141.json",
+      "method": "GET"
+    }
+  ],
+  "limitation": "Clear restarts the worker and downloads software through normal browser caching; no patient data is sent by these requests."
+}

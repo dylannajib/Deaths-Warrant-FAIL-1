@@ -9,9 +9,20 @@ The product goal is a remaining-years estimate from a patient's medical records.
 | 11.2b — Clinical-field extraction | **Prototype subset complete.** Strict broad FHIR/CCD questionnaire snapshot readers return the same complete profile; ordinary EHR exports are not generally supported. See `cardiovascular_record_contract.md`. Existing HF readers are retained. |
 | 11.3 — Prognosis calculations | **Research engine complete.** Versioned broad artifact, standard-library inference, fitted-mean bootstrap interval, support checks and parity tests implemented. Research acknowledgement remains required; no treatment or individual-condition attribution is claimed. |
 | 11.4 — Browser calculation/results | **Prototype integration complete.** Supported snapshots prefill locked imported values; users complete missing fields and confirm the assessment. A Web Worker runs the existing Python engine through Pyodide and displays mean remaining years, fitted-mean uncertainty and survival checks. Retry, timeout, clear and stale-result handling are implemented. |
-| 11.5 — Privacy, performance and builds | **Implementation approved and locally verified.** Self-hosted checked runtime, restrictive CSP/security headers, content-addressed engine/model, cache rules, release/host checks and synthetic benchmarks are implemented. Clean-install checks and the real browser/local Pages runtime pass. Publication and public HTTPS/edge/mobile acceptance remain outstanding. See `deployment.md`, `performance.md` and `browser_runtime.md`. |
+| 11.5 — Privacy, performance and builds | **Complete for the research prototype.** Approved build published at https://deaths-warrant.pages.dev/. Public file integrity, HTTPS/security headers, caching/compression, synthetic calculations and mobile viewport/emulation checks passed. Physical-phone testing and clinical suitability are not established. See the public verification reports and `deployment.md`. |
 
 Milestone 12 remains reserved for user-directed visual polishing.
+
+## Public release verification — 28 October 2026
+
+- Production URL: https://deaths-warrant.pages.dev/. Deployment: `34dcc7a4`. Release: `92e83cdeb406d4c6b0683db5ad403a41da005e5c253b6a135cf62f492a945d04`. This publishes the approved static artifact, without Functions, a patient database or an upload endpoint.
+- All 53 checked served files matched the release. HTTPS security headers, exact CSP, immutable/revalidation rules, WebAssembly MIME/gzip, ETag 304 and secured 404 passed. HTTP returned 301 to HTTPS. See `public-host-verification.json`.
+- Desktop collaborative-browser FHIR and CCD imports each displayed 17.4 mean years. Clear removed the form/result.
+- A separate Chromium test used a real 375-by-667 viewport after the collaborative preview twice retained 1280-by-800 despite resize requests. FHIR/CCD parity, missing creatinine, range rejection/recovery, malformed XML/recovery and Clear passed. Initial and result views had no horizontal overflow. See `public-browser-verification.json`.
+- The mobile-sized test applied fourfold CPU slowdown and page-network settings of 200,000 bytes/s download and 150 ms latency. Startup took 33.81 s. Page-level network emulation may not throttle every worker transfer. This is desktop emulation, not a physical-phone or universal startup-time claim.
+- Request capture included workers: all startup/Clear requests fetched same-origin software using GET. Import and calculation issued no requests. Local/session storage and IndexedDB were empty; no unexpected JavaScript errors occurred.
+- One bounded batch of 100 concurrent public model-file requests returned 100 HTTP 200 responses in 6.28 s. This checks static delivery from this connection, not 100 browser sessions or guaranteed capacity. See `public-performance-results.json`.
+- Physical mobile-device/browser coverage remains follow-up work. The frozen model, its inspected final sample and the clinical limitations are unchanged.
 
 ## Release preparation verification — 28 October 2026
 
